@@ -438,9 +438,9 @@ The hexagon can then be attached to the grid so all the player cards are in the 
   columns: 2,
   [Effect], [Cat Modifier],
   // generic -1 to resources
-  [-1 `Water`], [makes the effect temporary],
-  [-1 `Plant`], [makes the effect temporary],
-  [-1 `Animal`], [makes the effect temporary],
+  [-1 `Water`], [adds +1 garbage],
+  [-1 `Plant`], [adds +1 garbage],
+  [-1 `Animal`], [adds +1 garbage],
   // generic -1 to skills
   [temporary -1 to all skills], [ignore one of the -1],
   // generic -1 ap
