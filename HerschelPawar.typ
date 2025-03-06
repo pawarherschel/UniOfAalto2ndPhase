@@ -467,12 +467,12 @@ The hexagon can then be attached to the grid so all the player cards are in the 
 
 = Acknowledgement
 in no particular order
-- lucrious
-- Ashutosh
-- Emý
-- nottoph
-- Divyesh
 - Addy (DOS)
+- Ashutosh
+- Divyesh
+- Emý
+- Lucrious
+- nottoph
 
 = Major Inspirations
 - Terra Nil
@@ -483,7 +483,7 @@ in no particular order
     video-link: "https://www.youtube.com/watch?v=WKTvUrbMlrA",
   )
 - #youtube-link(
-    video-link: "https://www.youtube.com/watch?v=1ypOUn6rThM",
     creator: "Game Maker's Toolkit",
     title: "This Psychological Trick Makes Rewards Backfire",
+    video-link: "https://www.youtube.com/watch?v=1ypOUn6rThM",
   )
