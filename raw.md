@@ -2,7 +2,7 @@
 [x] hexgrid (hexes are cute)
 [x] robots ~~with wide abilities,~~ which they late rspecialize
 [x] optimism level influences the whole game (like luck)
-[ ] action cards: positive and negative
+[x] action cards: positive and negative
 [x] dice roll to avoid negative action, chance dependent on optimism level
 [x] ability to place a cat after round ends, chance dependent on optimism level
 [x] no max cats per hex, but max numbre of cats = (number of hexes * 1.5).floor()

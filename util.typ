@@ -27,3 +27,10 @@
     ]
   ],
 )
+
+#let youtube-link(title: str, creator: str, video-link: str) = {
+  block[
+    "#link(video-link)[#title]" --- #creator\
+    Link to the video: #link(video-link)
+  ]
+}

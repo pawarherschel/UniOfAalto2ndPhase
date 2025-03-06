@@ -463,3 +463,27 @@ The hexagon can then be attached to the grid so all the player cards are in the 
 
 = Analytic exercise
 
+#pagebreak(weak: true)
+
+= Acknowledgement
+in no particular order
+- lucrious
+- Ashutosh
+- Emý
+- nottoph
+- Divyesh
+- Addy (DOS)
+
+= Major Inspirations
+- Terra Nil
+- Wall-E
+- #youtube-link(
+    creator: "Adam Millard - The Architect of Games",
+    title: "Terra Nil Claims It's A Reverse Citybuilder. It Isn't.",
+    video-link: "https://www.youtube.com/watch?v=WKTvUrbMlrA",
+  )
+- #youtube-link(
+    video-link: "https://www.youtube.com/watch?v=1ypOUn6rThM",
+    creator: "Game Maker's Toolkit",
+    title: "This Psychological Trick Makes Rewards Backfire",
+  )
