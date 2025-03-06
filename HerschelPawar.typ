@@ -457,11 +457,59 @@ The hexagon can then be attached to the grid so all the player cards are in the 
 
 = A description of an interesting and memorable moment
 
+= conclusion? // TODO
+
 // --- PAGE END 7/7
 
 #pagebreak(weak: true)
 
+/*
+#exercise.task(
+  title: "Analytic exercise",
+  [Analytic exercise],
+)[
+  Write a brief essay (approximately 1000 words) reflecting on your Exercise 1 results and process, based on one or more of the following sources:
+
+  - #block[
+      Designing Journey -- a GDC talk by Jenova Chen\
+      https://www.youtube.com/watch?v=UGCkVHSvjzM
+    ]
+
+  - #block[
+      MDA: A Formal Approach to Game Design and Game Research -- a research paper by Robin Hunicke, Marc LeBlanc, and Robert Zubek\
+      https://users.cs.northwestern.edu/~hunicke/MDA.pdf
+    ]
+
+  - #block[
+      What Makes an Indie Hit?: How to Choose the Right Design -- a Game Developer Magazine article by Ryan Clark\
+      https://www.gamedeveloper.com/business/what-makes-an-indie-hit-how-to-choose-the-right-design
+    ]
+
+
+  Evaluation criteria:
+  1. Ability to handle complex issues and conceptual information
+  2. Ability to organize and communicate ideas clearly and concisely
+  3. Ability to reflect on your own work
+  4. Ability to analyze, criticize and invent
+  5. Quality of written communication
+
+  WRITING INSTRUCTIONS, FORMAT AND DELIVERY
+
+  The tasks should not be longer than stated in the instructions. You must use English in your tasks.
+
+  Save your tasks into one PDF file. Name the file with your own name, for instance, ForenameSurname.pdf.
+
+  Return all materials in PDF format.
+
+  The total size of your file may not exceed 20MB.
+
+  Add your full name and contact information (real life address, permanent email address) to ALL files that you send us. This makes sure that your answers will be treated as your answers. Make sure that the email address you state that will be valid for contacting you even a couple of months after the selection process. Please avoid using temporary email addresses, such as the email of the school you are leaving.
+]
+*/
+
 = Analytic exercise
+
+// --- Preliminary Assignments END
 
 #pagebreak(weak: true)
 
