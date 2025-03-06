@@ -5,17 +5,17 @@
   row-gutter: if bottom { 1em } else { 2em },
   box(width: 100%, content),
   if bottom {
-    rect(fill: luma(240))[
+    rect(fill: luma(240), width: 100%)[
       *Design Note:* #comment
     ]
   } else {
-    rect(width: 10em, fill: luma(240))[
+    rect(width: 13em, fill: luma(240))[
       *Design Note:* #comment
     ]
   },
 )
 
-#let explaination(detail: [], content) = grid(
+#let explanation(detail: [], content) = grid(
   columns: 2,
   rows: 1,
   content,

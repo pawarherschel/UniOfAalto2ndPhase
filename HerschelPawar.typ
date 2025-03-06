@@ -6,11 +6,32 @@
   title: "Re:Build Nature",
   type: "homework",
   abstract: [
-    "Re:Build Nature" is a cooperative board game where players work together to restore a post-apocalyptic world. In this cozy and hopeful setting, players, through the power of friendship, transmute garbage into beautiful ecosystems. The game emphasizes ecosystem building and positive action, making sure optimism affects all the core gameplay mechanics. The goal is to have fun as a group and create a unique map as the reward for the players to look back upon.
+    "Re:Build Nature" is a cooperative board game where players work together to restore a post-apocalyptic world. In this cozy and hopeful setting, players, through the power of friendship, transmute garbage into beautiful ecosystems. The game emphasizes ecosystem building and positive action, making sure optimism affects all the core gameplay mechanics. The goal is to have fun as a group and create a unique map as a reward for the players to look back upon.
   ],
   show-outline: false,
   date: datetime(year: 2025, month: 3, day: 4),
   author: "Herschel Pawar",
+  header-left: block(width: 165%)[
+    Link to Repository: #link("https://github.com/pawarherschel/UniOfAalto2ndPhase")[GitHub:pawarherschel/UniOfAalto2ndPhase]\
+    Link to Source File: #link("https://github.com/pawarherschel/UniOfAalto2ndPhase/blob/master/HerschelPawar.typ")[GitHub:pawarherschel/UniOfAalto2ndPhase:HerschelPawar.typ]\
+    Link to PDF: #link("https://github.com/pawarherschel/UniOfAalto2ndPhase/blob/master/HerschelPawar.pdf")[GitHub:pawarherschel/UniOfAalto2ndPhase:HerschelPawar.pdf]\
+  ],
+  page-margins: (bottom: 5em),
+  footer-left: [
+    Herschel Pravin Pawar\
+    402, Siddhi Belleza, Sector 35D,\
+    Kharghar - 410210, India
+  ],
+  footer-right: block(width: 100%)[
+    #align(right)[
+      #block[
+        #align(left)[
+          Phone Number: +918310783472\
+          Email: pawarherschel\@gmail.com
+        ]
+      ]
+    ]
+  ],
 )
 
 /*
@@ -39,40 +60,51 @@
 */
 
 = High Concept Document
-
-#explaination(detail: "A brief overview of the game")[
-  == At a Glance
+#explanation(detail: "A brief overview of the game")[
+  == Key Details
 ]
 
-=== Game Title
-Re:Build Nature
+#grid(
+  columns: 2,
+  gutter: 1em,
+  box(width: 100%)[
+    === Game Title
+    Re:Build Nature
+  ],
+  box(width: 100%)[
+    === Author
+    Herschel Pawar
+  ],
 
-=== Author
-Herschel Pawar
+  box(width: 100%)[
+    === Genre
+    Cooperative Board Game, Three Player Game
+  ],
+  box(width: 100%)[
+    === Theme
+    Nature restoration and optimism
+  ],
+)
 
-=== Genre
-Cooperative Board Game, Three Player Game
-
-=== Theme
-Nature restoration and optimism
-
-==== Optimism
+#explanation(detail: "How is optimism used in the game?")[
+  ==== Optimism
+]
 // / Optimism: "In the documentation, include a statement explaining how you used the theme “optimism”. Note that the theme should be weaved into the game design, e.g., the rule system, so that it is a central part of the game and not just a visual layer or merely an aspect of a backstory."
 
-Optimism is an important part of the gameplay, it affects nearly every game mechanic and it's not merely a goal the players need to complete to 100%. The decisions made in the game are reflected in the real world as the players need to draw on the map to perform actions. This acts as a physical evidence for the time they spent together and hopefully, in dire times, they will look back at the map they created and get hope.
+Optimism is an important part of the gameplay; it influences nearly every game mechanic, and it's not merely a goal the players need to complete to 100%. The decisions made in the game are reflected in the real world, as the players need to draw on the map to perform actions. This acts as physical evidence for the time they spent together, and hopefully, in dire times, they will look back at the map they created and get hope.
 
 === Target Hardware
 Board Game (requirement)
 
-=== Core Gameplay Loop
-Three players come together to transform the garbage filled map into a scenic beauty by physically drawing on the map.
+=== Core Gameplay Idea
+Three players come together to transform the garbage-filled map into scenic beauty by physically drawing on the map. They roll to gain action points, and the amount of action points is determined by the current optimism level.
 
-#explaination(detail: "Short statement about the game")[
+#explanation(detail: "Short statement about the game")[
   == High Concept/Synopsis
 ]
-"Re:Build Nature" is a cozy cooperative board game, set in a Post-apocalyptic world, three robots want to transmute garbage into a beautiful landscape. Specialize your robots to transmute toughed garbage and end up with a beautiful map.
+"Re:Build Nature" is a cozy cooperative board game set in a post-apocalyptic world. Three robots want to transmute garbage into a beautiful landscape. Specialize your robots to transmute tough garbage and end up with a beautiful map.
 
-#explaination(detail: "\"Hooks\" for the game")[
+#explanation(detail: "\"Hooks\" for the game")[
   == Features
 ]
 - Cooperative Gameplay: Cooperative game with 3 players
@@ -81,44 +113,42 @@ Three players come together to transform the garbage filled map into a scenic be
 - Create a Map: Draw on the tiles to transmute garbage
 - Cats!
 
-#explaination(detail: "Why is the player playing the game?")[
+#explanation(detail: "Why is the player playing the game?")[
   == Player Motivation
 ]
 
-Players want to relax and play with their friends. Once the game finishes, they end up with a map as physical everlasting proof of their gameplay.
+Players want to relax and play with their friends. Once the game finishes, they end up with a map as physical, everlasting proof of their gameplay.
 
-#explaination(detail: "Who is the game aimed at?")[
+#explanation(detail: "Who is the game aimed at?")[
   == Target Audience
 ]
 People interested in relaxing with their friends
 
-#explaination(detail: "Examples of similar products and comments on how it is different")[
+#explanation(detail: "Examples of similar products and comments on how it is different")[
   == Competition
 ]
 === Terra Nil
-
 #quote(
   "Terra Nil is an intricate environmental strategy game about transforming a barren wasteland into a thriving, balanced ecosystem. Bring life back to a lifeless world by purifying soil, cleaning oceans, planting trees, and reintroducing wildlife, then leave without a trace.",
-  attribution: "Steam Page",
+  attribution: "Official Steam Page",
   block: true,
 )
 
-#quote(
-  "Terra Nil is a game that bills itself as a reverse citybuilder and it's all about revitalising a post industrial wasteland into a thriving biosphere full of life, you start by reseeding the soil, then you cultivate some biomes, then you invite animals back to the environment before finally packing up all your stuff and leaving nature the hell alone for a change.",
-  attribution: "Adam Millard - The Architect of Games",
-  block: true,
-)
+// #quote(
+//   "Terra Nil is a game that bills itself as a reverse citybuilder and it's all about revitalising a post industrial wasteland into a thriving biosphere full of life, you start by reseeding the soil, then you cultivate some biomes, then you invite animals back to the environment before finally packing up all your stuff and leaving nature the hell alone for a change.",
+//   attribution: "Adam Millard - The Architect of Games",
+//   block: true,
+// )
 
-"Re:Build Nature" differentiates itself from "Terra Nil" by offering a multiplayer experience with a strong emphasis on optimism. While "Re:Build Nature" also has animals, and plants, ultimately it's upto the player's imagination on how they look. Also, due to presence of action cards and cat tokens, the players need to strategize on what to do.
+"Re:Build Nature" differentiates itself from "Terra Nil" by offering a multiplayer experience with a strong emphasis on optimism. While "Re:Build Nature" also has animals and plants, ultimately it's up to the player's imagination on how they look. Also, due to the presence of action cards and cat tokens, the players need to strategize on what to do.
 
-#explaination(detail: "What makes the game idea unique?")[
+#explanation(detail: "What makes the game idea unique?")[
   == Unique Selling Points
 ]
 - Physical evidence of completed game
 - Relaxing gameplay with friends
-- Ability to homebrew
 
-#explaination(detail: "The important design aspects of your game that you want to instil")[
+#explanation(detail: "The important design aspects of your game that we want to instill")[
   == Design Goals
 ]
 - Create a cooperative experience with positive vibes
@@ -128,31 +158,29 @@ People interested in relaxing with their friends
 - Create a tangible sense of achievement with the completed map
 - Encourage homebrew and customization through a modular design
 
-#explaination(detail: "Design aspects which we are explicitly trying to avoid")[
-  == Design Non-goals
+#explanation(detail: "Design aspects which we are explicitly trying to avoid")[
+  == Design non-goals
 ]
 - Mechanics which introduce competition between players
-- Mentally intensive game which requires juggling resources
+- Mentally intensive game that requires juggling resources
 - Punishing gameplay
 - Extremely random gameplay
 - Long gameplay loops
 
 = Gameplay Loop
-
 == Pre-game
-#design-note(comment: "Starting with a weak and generalized skillset, and then eventually specializing.")[
+#design-note(comment: "Starting with a weak and generalized skill set, and then eventually specializing.")[
   Players need to distribute 3 skill points (SPs) between the following skills.
 
   - Water
   - Plant
   - Animal
-
-  Recommendation: The players can attach their player cards to the outside of the grid, and that would be their starting position
 ]
+*Recommendation*: The players can attach their player cards to the outside of the grid, and that would be their starting position
 
 == Action Point Generation <RoundStart>
 #design-note(
-  comment: "The gameplay accelerates towards the end as optimism is high. This feels similar to real life where, without optimism, theres no hope, and without hope, the energy level is extremely low, thus, people are unable to do perform actions and do stuff.",
+  comment: "The gameplay accelerates towards the end as optimism is high. This feels similar to real life, where, without optimism, there's no hope, and without hope, the energy level is extremely low; thus, people are unable to perform actions and do stuff.",
 )[
   At the start of the round, all players roll a ten-sided dice (1D10) which generates action points (APs) according to the #link(<APCalc>)[formula below].
   $
@@ -173,24 +201,24 @@ People interested in relaxing with their friends
 
 == Players' Move
 #design-note(
-  comment: "This give freedom to the players. This way, if they get a negative action card and need to react to it, they are able to.",
+  comment: "This gives freedom to the players. This way, if they get a negative action card and need to react to it, they are able to.",
 )[
   The players strategize, if they need to move to some tile, they move towards the tile, if they need to perform actions, they spend AP to either refine resources or draw action cards. If they want to trade SP, they can spend AP to do so.
 
   Refer to rules #link(<SpendAP>)[here] to see what players can do with AP.
-
-  #highlight("There is no fixed order that the players have to follow").
-  The players are free to spend AP in any order they want.
-  This phase ends once all the players have used their AP.
 ]
 
+There is no fixed order that the players have to follow.
+The players are free to spend AP in any order they want.
+This phase ends once all the players have used their AP.
+APs do not carry over, use it, or lose it.
 
 == Cat Token Related Actions
-
 #design-note(
-  comment: "I love cats, they make everything better for me. Thats why cat tokens are being used to amplify the positive action cards.",
+  comment: "I love cats; they make everything better for me. That's why cat tokens are being used to amplify the positive action cards.",
 )[
-  The players have a chance to place a cat on the hex theyre currently in. The players roll a six-sided dice which will decide if they can place a cat. The chance is calculated with the #link(<CatCalc>)[formula below].
+  The players have a chance to place a cat on the hex they're currently in. The players roll a six-sided dice, which will decide if they can place a cat. The chance is calculated with the #link(<CatCalc>)[formula below].
+  Only one roll per round.
   $
     "Success?" = cases(
       &"Yes" &"if" floor("dice roll"/6 * 100) <= "Optimism",
@@ -215,7 +243,6 @@ People interested in relaxing with their friends
 ]
 
 == Round Over
-
 Players get 1 additional skill point at the following optimism thresholds
 + 25%
 + 50%
@@ -225,19 +252,16 @@ Players get 1 additional skill point at the following optimism thresholds
 Go to #link(<RoundStart>)[Action Point Generation]
 
 == Game Over
-
 The game is over when
 + The players are satisfied with the map
 + All the garbage has been refined into resources
 
 = Rules of the game
-
 == Gaining Optimism
-
-1% for movement\
-1% for trading\
-2% for transmute\
-3% for visiting hex with cat and placing cat\
+- 1% for movement
+- 1% for trading
+- 2% for transmute
+- 3% for visiting hex with cat and placing cat
 
 
 == Using AP <SpendAP>
@@ -248,7 +272,7 @@ The game is over when
 - Trade skill points
 
 == Positive Action Cards
-The player decides when and where to use the positive action card. The action card is applied on the hex they're current standing on.
+The player decides when and where to use the positive action card. The action card is applied to the hex they're currently standing on.
 
 == Negative Action Cards
 #design-note(
@@ -262,18 +286,22 @@ The player decides when and where to use the positive action card. The action ca
 == Trading Skill Points
 The players can trade skill points if and only if they're in the same hex and the skill category is same.
 
-E.g. if `A` has ${1, 2, 2(x)}$ and `B` has ${0(y), 2, 3}$, `A` cannot give $x$ and turn it into $y$.
+E.g., if `A` has ${1, 2, 2(x)}$ and `B` has ${0(y), 2, 3}$, `A` cannot give $x$ and turn it into $y$.
 
-/ Illegal Trade: #box([`A` -> ${1,2,1(-1)}$]) and #box([`B` -> ${1(+1),2,3}$])
-/ Legal Trade: #box([`A` -> ${1,2,1(-1)}$]) and #box([`B` -> ${1,2,4(+1)}$])
+#table(
+  rows: 2,
+  columns: 3,
+  stroke: 0pt,
+  [*Illegal Trade*], box(width: 0.5em), [#box([`A` -> ${1,2,1(-1)}$]) and #box([`B` -> ${1(+1),2,3}$])],
+  [*Legal Trade*], box(width: 0.5em), [#box([`A` -> ${1,2,1(-1)}$]) and #box([`B` -> ${1,2,4(+1)}$])],
+)
 
 == Cat Token
-
 Cat tokens can only be placed in the current hex.
 
-Cat tokens #highlight[CANNOT] be moved.
+Cat tokens cannot be moved.
 
-There is no max cat per hex, however the maximum number of cats per board is calculated using the following formula.
+There is no max cat per hex; however, the maximum number of cats per board is calculated using the following formula.
 $
   "Max number of cats per board" = floor("number of hexes in the map" * 1.5)
 $
@@ -285,7 +313,11 @@ $
     columns: {1 + (6-3)},
     "Length",
     ..for i in range(3, 6) {
-      ([#i],)
+      if i == 3 {
+        ([#i (standard)],)
+      } else {
+        ([#i],)
+      }
     },
     "Hexes",
     ..hexes.map(x => [#x]),
@@ -294,28 +326,29 @@ $
   )
 $
 
-== Corruption
+Unless otherwise stated, the cat modifiers only apply if the action card is used in a hex with a cat token. The cat modifiers are applied for each cat token in the hex.
 
+== Corruption
 #design-note(
-  comment: "corruption level exists as a skill level check, hopefully this will encourage players to specialize their AP and also increase Optimism level",
+  comment: "Corruption level exists as a skill level check; hopefully this will encourage players to specialize their AP and also increase optimism level.",
 )[
   The corruption level is randomized on each tile.
-  Corruption level determines the minimum skill level required to transmute the garbage. Players need to roll a six-sided dice (1D6) for the corruption level for each resource (i.e. water, plant, and animal).
-
-  Rolling to check for corruption level #highlight[does NOT] consume AP. The players can only check for corruption level on the hex they're standing on.
-
-  Corruption #highlight[does NOT] spread.
+  Corruption level determines the minimum skill level required to transmute the garbage. Players need to roll a six-sided dice (1D6) for the corruption level for each resource (i.e., water, plant, and animal).
+  E.g., Level three corruption requires a minimum of level three skill.
+  Rolling to check for corruption level does not consume AP.
+  Corruption does not spread.
 ]
 
+The players can only check for corruption level on the hex they're standing on.
+
+
 == Garbage
-
 There is three garbage per hex. Transmuting one garbage consumes one AP.
-
 The resources stack multiplicatively and can spill into other tiles depending on the stacking level.
 
-/ 1 stack: spill into 1 other hex decided by player
-/ 2 stack: spill into 3 hex decided by player
-/ 3 stack: spill into all neighbors
+/ 1 stack: can spill into 1 other hex, decided by player
+/ 2 stack: can spill into 3 hex, decided by player
+/ 3 stack: can spill into all neighbors
 
 Some resources have requirements.
 
@@ -324,41 +357,90 @@ Some resources have requirements.
 - `Animal`: require `Water` and `Plant`
 
 = Visualizations
-
-Items required:
-+ Pencils
-+ Crayons
-+ Erasers
-+ Glue
-+ Anything to enhance the tiles!
-
-== Board
-#design-note(comment: "Hexagons are bestagons! :3")[
-  #block(
-    height: 36em,
-    width: 100%,
-    figure(image("hex-grid.png", fit: "contain", height: 1fr), caption: "Example Hex Grid"),
-  )
+#design-note(comment: "These are just suggestions; use your creativity!")[
+  Items required:
+  + Pencils
+  + Crayons
+  + Erasers
+  + Glue
+  + Anything to enhance the tiles!
 ]
 
 == Player Card
-#design-note(comment: "Complete creative freedom")[
-  The players can draw whatever they want as their player character inside a hexagon.
+The players can draw whatever they want as their player character inside a hexagon.
 
-  #figure(
-    image("bestagon.svg"),
-    caption: "outline for the hexagon where the players can create their character and write their final stats",
+#block(
+  height: 9em,
+  width: 100%,
+  figure(
+    image("bestagon.svg", height: 1fr, width: 100%, fit: "contain"),
+    caption: "Outline for the hexagon where the players can create their character and write their final stats.",
+  ),
+)
+== Board
+#design-note(comment: "Hexagons are bestagons! :3")[
+  #block(
+    height: 32em,
+    width: 100%,
+    figure(image("hex-grid.png", fit: "contain", height: 1fr), caption: "Example Hex Grid of length 3 (standard)"),
   )
-
-  The hexagon can then be attached to the grid so all the player cards are in the same place.
 ]
+
+
+The hexagon can then be attached to the grid so all the player cards are in the same place.
 
 == Cat Token
-#design-note(comment: "Small fun moments to look back at and laugh")[
-  Draw a cat smaller than a hexagon and then cut around the cat so there is minimal paper, and then glue it on the grid.
+#design-note(
+  comment: "Small fun moments to look back at and laugh.",
+  bottom: true,
+)[
+  Draw a cat and then cut around the cat, so there is minimal paper, and then glue it on the grid.
 ]
 
+// enhancement: add flavor text and name
+// enhancement: more creative cards lol
 == Cards
+=== Positive Action Cards
+#table(
+  columns: 2,
+  [Effect], [Cat Modifier],
+  // generic +1 to resources
+  [+1 `Water` to all], [+1 `Animal`],
+  [+1 `Plant` to all], [+1 `Water`],
+  [+1 `Animal` to all], [+1 `Plant`],
+  // generic +1 to skills
+  [temporary +1 to all skills to all], [temporary +1 skill point],
+  // generic +1 ap
+  [+1 AP to spend in current round], [+1 AP next round],
+  // generic +% optimism
+  [temporary +10% optimism], [permanent +1% optimism],
+  // generic avoid bad card
+  [skip the next negative card], [permanent +5% optimism],
+)
+=== Negative Action Cards
+#table(
+  columns: 2,
+  [Effect], [Cat Modifier],
+  // generic -1 to resources
+  [-1 `Water`], [makes the effect temporary],
+  [-1 `Plant`], [makes the effect temporary],
+  [-1 `Animal`], [makes the effect temporary],
+  // generic -1 to skills
+  [temporary -1 to all skills], [ignore one of the -1],
+  // generic -1 ap
+  [-1 AP], [+1% optimism],
+  // extreme bad luck
+  [cannot participate next round], [+1 AP],
+  // oops?
+  [lose one of your stashed card], [doubles cat token effectiveness this round],
+)
+
 
 = A report of testing the game
 = A description of an interesting and memorable moment
+
+
+#pagebreak(weak: true)
+
+= Analytic exercise
+
