@@ -77,14 +77,19 @@
   ],
 
   box(width: 100%)[
+    === Target Hardware
+    Board Game (requirement)
+  ],
+  box(width: 100%)[
     === Genre
     Cooperative Board Game, Three Player Game
   ],
-  box(width: 100%)[
-    === Theme
-    Nature restoration and optimism
-  ],
 )
+
+
+
+=== Theme
+Nature restoration and optimism
 
 #explanation(detail: "How is optimism used in the game?")[
   ==== Optimism
@@ -92,9 +97,6 @@
 // / Optimism: "In the documentation, include a statement explaining how you used the theme “optimism”. Note that the theme should be weaved into the game design, e.g., the rule system, so that it is a central part of the game and not just a visual layer or merely an aspect of a backstory."
 
 Optimism is an important part of the gameplay; it influences nearly every game mechanic, and it's not merely a goal the players need to complete to 100%. The decisions made in the game are reflected in the real world, as the players need to draw on the map to perform actions. This acts as physical evidence for the time they spent together, and hopefully, in dire times, they will look back at the map they created and get hope.
-
-=== Target Hardware
-Board Game (requirement)
 
 === Core Gameplay Idea
 Three players come together to transform the garbage-filled map into scenic beauty by physically drawing on the map. They roll to gain action points, and the amount of action points is determined by the current optimism level.
@@ -127,6 +129,9 @@ People interested in relaxing with their friends
 #explanation(detail: "Examples of similar products and comments on how it is different")[
   == Competition
 ]
+
+// --- PAGE END 1/7
+
 === Terra Nil
 #quote(
   "Terra Nil is an intricate environmental strategy game about transforming a barren wasteland into a thriving, balanced ecosystem. Bring life back to a lifeless world by purifying soil, cleaning oceans, planting trees, and reintroducing wildlife, then leave without a trace.",
@@ -179,10 +184,15 @@ People interested in relaxing with their friends
 *Recommendation*: The players can attach their player cards to the outside of the grid, and that would be their starting position
 
 == Action Point Generation <RoundStart>
+At the start of the round, all players roll a ten-sided dice (1D10) which generates action points (APs) according to the #link(<APCalc>)[formula below].
+
+// --- PAGE END 2/7
+
 #design-note(
+  bottom: false,
   comment: "The gameplay accelerates towards the end as optimism is high. This feels similar to real life, where, without optimism, there's no hope, and without hope, the energy level is extremely low; thus, people are unable to perform actions and do stuff.",
 )[
-  At the start of the round, all players roll a ten-sided dice (1D10) which generates action points (APs) according to the #link(<APCalc>)[formula below].
+  // note: maybe removing randomness and switching to "if dice roll > 50% => +1 AP" would be better
   $
     "AP" &= 1 + round("Optimism Bias" * "dice roll"/10) \
     "Optimism Bias" &= cases(
@@ -256,6 +266,8 @@ The game is over when
 + The players are satisfied with the map
 + All the garbage has been refined into resources
 
+// --- PAGE END 3/7
+
 = Rules of the game
 == Gaining Optimism
 - 1% for movement
@@ -326,6 +338,8 @@ $
   )
 $
 
+// --- PAGE END 4/7
+
 Unless otherwise stated, the cat modifiers only apply if the action card is used in a hex with a cat token. The cat modifiers are applied for each cat token in the hex.
 
 == Corruption
@@ -366,6 +380,17 @@ Some resources have requirements.
   + Anything to enhance the tiles!
 ]
 
+== Board
+#design-note(comment: "Hexagons are bestagons! :3")[
+  #block(
+    height: 20em,
+    width: 100%,
+    figure(image("hex-grid.png", fit: "contain", height: 1fr), caption: "Example Hex Grid of length 3 (standard)"),
+  )
+]
+
+// --- PAGE END 5/7
+
 == Player Card
 The players can draw whatever they want as their player character inside a hexagon.
 
@@ -377,15 +402,6 @@ The players can draw whatever they want as their player character inside a hexag
     caption: "Outline for the hexagon where the players can create their character and write their final stats.",
   ),
 )
-== Board
-#design-note(comment: "Hexagons are bestagons! :3")[
-  #block(
-    height: 32em,
-    width: 100%,
-    figure(image("hex-grid.png", fit: "contain", height: 1fr), caption: "Example Hex Grid of length 3 (standard)"),
-  )
-]
-
 
 The hexagon can then be attached to the grid so all the player cards are in the same place.
 
@@ -435,10 +451,13 @@ The hexagon can then be attached to the grid so all the player cards are in the 
   [lose one of your stashed card], [doubles cat token effectiveness this round],
 )
 
+// --- PAGE END 6/7
 
 = A report of testing the game
+
 = A description of an interesting and memorable moment
 
+// --- PAGE END 7/7
 
 #pagebreak(weak: true)
 
