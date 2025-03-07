@@ -630,7 +630,7 @@ The hexagon can then be attached to the grid so all the player cards are in the 
       / Optimism: A percentage based value that influences various game mechanics (not too dissimilar to luck.). <Optimism>
     ],
     [
-      / Garbage: Raw materians which can be #link(<Transmute>)[transmuted] into #link(<Resources>)[resources]. <Garbage>
+      / Garbage: Raw materials which can be #link(<Transmute>)[transmuted] into #link(<Resources>)[resources]. <Garbage>
     ],
     [/ Raw resources: See: #link(<Garbage>)[Garbage] <RawResources>],
     [
