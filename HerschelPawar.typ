@@ -1,6 +1,9 @@
 #import "@preview/grape-suite:2.0.0": *
 #import "util.typ": *
 #set text(lang: "en")
+#set page(numbering: "1")
+#set math.equation(numbering: "~ Eq 1")
+#show table: it => align(center)[#it]
 
 #show: exercise.project.with(
   title: "Re:Build Nature",
@@ -9,15 +12,29 @@
     "Re:Build Nature" is a cooperative board game where players work together to restore a post-apocalyptic world. In this cozy and hopeful setting, players, through the power of friendship, transmute garbage into beautiful ecosystems. The game emphasizes ecosystem building and positive action, making sure optimism affects all the core gameplay mechanics. The goal is to have fun as a group and create a unique map as a reward for the players to look back upon.
   ],
   show-outline: false,
+  // show-outline: true,
   date: datetime(year: 2025, month: 3, day: 4),
   author: "Herschel Pawar",
-  header-left: block(width: 165%)[
-    Link to Repository: #link("https://github.com/pawarherschel/UniOfAalto2ndPhase")[GitHub:pawarherschel/UniOfAalto2ndPhase]\
-    Link to Source File: #link("https://github.com/pawarherschel/UniOfAalto2ndPhase/blob/master/HerschelPawar.typ")[GitHub:pawarherschel/UniOfAalto2ndPhase:HerschelPawar.typ]\
-    Link to PDF: #link("https://github.com/pawarherschel/UniOfAalto2ndPhase/blob/master/HerschelPawar.pdf")[GitHub:pawarherschel/UniOfAalto2ndPhase:HerschelPawar.pdf]\
+  header-left: block(width: 180%)[
+    #grid(
+      rows: 3,
+      columns: 2,
+      // stroke: 1pt,
+      align: left,
+      column-gutter: 0.3em,
+      row-gutter: 0.7em,
+      "Link to Repository:",
+      link("https://github.com/pawarherschel/UniOfAalto2ndPhase")[GitHub:pawarherschel/UniOfAalto2ndPhase],
+
+      "Link to Source File:",
+      link("https://github.com/pawarherschel/UniOfAalto2ndPhase/blob/master/HerschelPawar.typ")[GitHub:pawarherschel/UniOfAalto2ndPhase:HerschelPawar.typ],
+
+      "Link to PDF:",
+      link("https://github.com/pawarherschel/UniOfAalto2ndPhase/blob/master/HerschelPawar.pdf")[GitHub:pawarherschel/UniOfAalto2ndPhase:HerschelPawar.pdf],
+    )
   ],
   page-margins: (bottom: 5em),
-  footer-left: [
+  footer-left: align(left)[
     Herschel Pravin Pawar\
     402, Siddhi Belleza, Sector 35D,\
     Kharghar - 410210, India
@@ -162,6 +179,7 @@ People interested in relaxing with their friends
 - Act as a team-building exercise
 - Create a tangible sense of achievement with the completed map
 - Encourage homebrew and customization through a modular design
+- No fail state
 
 #explanation(detail: "Design aspects which we are explicitly trying to avoid")[
   == Design non-goals
@@ -176,17 +194,38 @@ People interested in relaxing with their friends
 == Pre-game
 #design-note(comment: "Starting with a weak and generalized skill set, and then eventually specializing.")[
   Players need to distribute 3 skill points (SPs) between the following skills.
-
-  - Water
-  - Plant
-  - Animal
+  #columns(3)[
+    - Water
+    #colbreak()
+    - Plant
+    #colbreak()
+    - Animal
+  ]
+  Optimism level starts at 0%.
 ]
-*Recommendation*: The players can attach their player cards to the outside of the grid, and that would be their starting position
+
+*Recommendation*: The players can attach their player cards to the outside of the grid, and that would be their starting position.
 
 == Action Point Generation <RoundStart>
-At the start of the round, all players roll a ten-sided dice (1D10) which generates action points (APs) according to the #link(<APCalc>)[formula below].
+At the start of the round, all players roll a ten-sided dice (1D10) which generates action points (APs) according @APCalc.
+$
+  "AP" &= 1 + floor("Bias" (#[@OptimismBias]) * "dice roll"/10)
+$ <APCalc>
 
 // --- PAGE END 2/7
+
+#let thresholds = (
+  0,
+  10,
+  20,
+  30,
+  40,
+  50,
+  75,
+  90,
+  95,
+  100,
+)
 
 #design-note(
   bottom: false,
@@ -194,20 +233,115 @@ At the start of the round, all players roll a ten-sided dice (1D10) which genera
 )[
   // note: maybe removing randomness and switching to "if dice roll > 50% => +1 AP" would be better
   $
-    "AP" &= 1 + round("Optimism Bias" * "dice roll"/10) \
-    "Optimism Bias" &= cases(
-    {0} &"if" & &"Optimism" < 10%,
-    [0, 2] &"if" 10% &<= &"Optimism" < 20%,
-    [1, 2] &"if" 20% &<= &"Optimism" < 30%,
-    [1, 3] &"if" 30% &<= &"Optimism" < 40%,
-    [1, 4] &"if" 40% &<= &"Optimism" < 50%,
-    [2, 4] &"if" 50% &<= &"Optimism" < 75%,
-    [2, 4] &"if" 75% &<= &"Optimism" < 90%,
-    [3, 4] &"if" 90% &<= &"Optimism" < 95%,
-    {4} &"if" 95% &<= &"Optimism",
-  )
-  $ <APCalc>
+    "Bias" &= cases(
+      {0} &"if" & &"Optimism" < #thresholds.at(1)%,
+      [0, 2] &"if" #thresholds.at(1)% &<= &"Optimism" < #thresholds.at(2)%,
+      [1, 2] &"if" #thresholds.at(2)% &<= &"Optimism" < #thresholds.at(3)%,
+      [1, 3] &"if" #thresholds.at(3)% &<= &"Optimism" < #thresholds.at(4)%,
+      [1, 4] &"if" #thresholds.at(4)% &<= &"Optimism" < #thresholds.at(5)%,
+      [2, 4] &"if" #thresholds.at(5)% &<= &"Optimism" < #thresholds.at(6)%,
+      [3, 4] &"if" #thresholds.at(6)% &<= &"Optimism" < #thresholds.at(7)%,
+      {4} &"if" #thresholds.at(7)% &<= &"Optimism" < #thresholds.at(8)%,
+      {5} &"if" #thresholds.at(8)% &<= &"Optimism",
+    )
+  $ <OptimismBias>
 ]
+
+
+#let op-bias(o: int, dice: int) = {
+  let possible = if o < thresholds.at(1) {
+    (0,)
+  } else if o < thresholds.at(2) {
+    (0, 1, 2)
+  } else if o < thresholds.at(3) {
+    (1, 2)
+  } else if o < thresholds.at(4) {
+    (1, 2, 3)
+  } else if o < thresholds.at(5) {
+    (1, 2, 3, 4)
+  } else if o < thresholds.at(6) {
+    (2, 3, 4)
+  } else if o < thresholds.at(7) {
+    (3, 4)
+  } else if o < thresholds.at(8) {
+    (4,)
+  } else { (5,) }
+
+  let (ret, idx, len) = if possible.len() == 1 {
+    (possible.at(0), 0, 1)
+  } else {
+    let perc = dice / 6.0
+
+    let idx = int(calc.floor(perc * possible.len()))
+
+    (possible.at(idx, default: possible.last()), idx, possible.len())
+  }
+
+  return (o: o, dice: dice, bias: ret)
+}
+
+#let vals = (
+  // range(0, 101)
+  thresholds
+    .map(o => {
+      range(1, 7).map(dice => op-bias(o: o, dice: dice))
+    })
+    .flatten()
+    .chunks(6)
+    .map(c => c.rev())
+    .map(c => c.dedup(key: c => c.bias))
+    .map(c => c.rev())
+    .flatten()
+)
+
+#let soa-vals = vals.fold(
+  (o: (), dice: (), bias: ()),
+  (acc, it) => {
+    let (o, dice, bias) = it
+    acc.o.push(o)
+    acc.dice.push(dice)
+    acc.bias.push(bias)
+
+    acc
+  },
+)
+#let OptimismTable = {
+  let style-a(val: int) = {
+    let color = oklch(100%, 50%, (val / 7 * 360deg))
+    table.cell(fill: color)[
+      #val
+    ]
+  }
+
+  let style-b(val: int, s: str) = {
+    let color = oklch(100%, 90%, (val / 101 * 360deg))
+    let c = rotate(-90deg, reflow: true)[#val#s]
+    let c = table.cell(fill: color)[#c]
+    c
+  }
+
+  let style-c(val: str) = {
+    let c = val.split(" ").join("\n")
+    c
+  }
+
+
+  table(
+    columns: (1 + soa-vals.o.len()),
+    rows: 3,
+    align: center + horizon,
+    style-c(val: "Minimum Optimism Level"),
+    ..soa-vals.o.map(it => style-b(val: it, s: "%")),
+
+    style-c(val: "Max Dice Value"),
+    ..soa-vals.dice.map(it => (style-a(val: it))),
+
+    style-c(val: "Action Points"),
+    ..soa-vals.bias.map(it => style-a(val: it + 1))
+  )
+}
+
+#figure(OptimismTable, caption: "Look Up Table for AP calculation")
 
 == Players' Move
 #design-note(
@@ -215,7 +349,7 @@ At the start of the round, all players roll a ten-sided dice (1D10) which genera
 )[
   The players strategize, if they need to move to some tile, they move towards the tile, if they need to perform actions, they spend AP to either refine resources or draw action cards. If they want to trade SP, they can spend AP to do so.
 
-  Refer to rules #link(<SpendAP>)[here] to see what players can do with AP.
+  Refer to the rules (#link(<SpendAP>)[@SpendAP]) to see what players can do with AP.
 ]
 
 There is no fixed order that the players have to follow.
@@ -227,61 +361,78 @@ APs do not carry over, use it, or lose it.
 #design-note(
   comment: "I love cats; they make everything better for me. That's why cat tokens are being used to amplify the positive action cards.",
 )[
-  The players have a chance to place a cat on the hex they're currently in. The players roll a six-sided dice, which will decide if they can place a cat. The chance is calculated with the #link(<CatCalc>)[formula below].
+  The players have a chance to place a cat on the hex they're currently in. The players roll a six-sided dice, which will decide if they can place a cat. The chance is calculated using @CatCalc.
   Only one roll per round.
   $
     "Success?" = cases(
-      &"Yes" &"if" floor("dice roll"/6 * 100) <= "Optimism",
-      "otherwise" &"No",
+      "Yes" &"if" floor("dice roll"/6 * 100) <= "Optimism",
+      "No" &"otherwise",
     )
   $<CatCalc>
-  Refer to the #link(<CatLUT>)[table below] for values.
-  $
-    #table(
+]
+#figure(
+  table(
     rows: 2,
-    columns: {1 + 6},
+    columns: { 1 + 6 },
     "dice roll",
     ..for i in range(1, 7) {
       ([#i],)
     },
     "minimum Optimism",
     ..for i in range(1, 7) {
-      ([#{calc.floor(i/6 * 100)}],)
+      ([#{ calc.floor(i / 6 * 100) }],)
     }
-  )
-  $ <CatLUT>
-]
+  ),
+  caption: "Look Up Table for success calculation",
+)
 
-== Round Over
-Players get 1 additional skill point at the following optimism thresholds
-+ 25%
-+ 50%
-+ 75%
-+ 100%
-
-Go to #link(<RoundStart>)[Action Point Generation]
-
-== Game Over
-The game is over when
-+ The players are satisfied with the map
-+ All the garbage has been refined into resources
 
 // --- PAGE END 3/7
 
+== Round Over
+#design-note(comment: "Trying to mimic the process of specialization in real life")[
+  Players get 1 additional skill point at the following optimism thresholds
+  #columns(4)[
+    + 25%
+    #colbreak()
+    + 50%
+    #colbreak()
+    + 75%
+    #colbreak()
+    + 100%
+  ]
+  Go to #link(<RoundStart>)[Action Point Generation]
+]
+== Game Over
+#design-note(comment: "The goal is to have fun")[
+  The game is over either when
+  the players are satisfied with the map
+  or all the garbage has been refined into resources
+]
+
 = Rules of the game
 == Gaining Optimism
-- 1% for movement
-- 1% for trading
-- 2% for transmute
-- 3% for visiting hex with cat and placing cat
-
+#columns[
+  - 3% for visiting hex with cat
+  - 3% for placing cat
+  - 2% for transmuting all the garbage in an hex
+  - 1% for trading
+  #colbreak()
+  - Drawing action cards
+    - Positive action cards give +3%
+    - Negative action cards give -2%
+    - Avoiding negative action cards give +1%
+]
 
 == Using AP <SpendAP>
-- Draw an Action Card
-- Travel to another hex
-- Save the action card for later
-- Transmute garbage into resources
-- Trade skill points
+#columns()[
+  - Draw an Action Card
+  - Travel to another hex
+  - Transmute garbage into resources
+  #colbreak()
+  - Save the action card for later
+  - Trade skill points
+]
 
 == Positive Action Cards
 The player decides when and where to use the positive action card. The action card is applied to the hex they're currently standing on.
@@ -292,7 +443,7 @@ The player decides when and where to use the positive action card. The action ca
   comment: "Rolling to avoid is being used to mimic the feeling that negative outcomes affect you less when you're hopeful and optimistic.",
 )[
   The negative effects of the action card are immediately evoked on the hex the player is in.
-  You can roll to avoid the negative effect. Success follows the same formula as the cat calculation #link(<CatCalc>)[here].
+  You can roll to avoid the negative effect. Success follows @CatCalc.
 ]
 
 == Trading Skill Points
@@ -309,20 +460,19 @@ E.g., if `A` has ${1, 2, 2(x)}$ and `B` has ${0(y), 2, 3}$, `A` cannot give $x$ 
 )
 
 == Cat Token
-Cat tokens can only be placed in the current hex.
-
-Cat tokens cannot be moved.
-
-There is no max cat per hex; however, the maximum number of cats per board is calculated using the following formula.
+Cat tokens can only be placed in the current hex and they cannot be moved.
+There is no max cat per hex; however, the maximum number of cats per board is calculated using @MaxCat.
 $
   "Max number of cats per board" = floor("number of hexes in the map" * 1.5)
-$
-Common values:
+$ <MaxCat>
+
+// --- PAGE END 4/7
+
 #let hexes = (8, 23, 46)
-$
-  #table(
+#figure(
+  table(
     rows: 3,
-    columns: {1 + (6-3)},
+    columns: { 1 + (6 - 3) },
     "Length",
     ..for i in range(3, 6) {
       if i == 3 {
@@ -335,11 +485,9 @@ $
     ..hexes.map(x => [#x]),
     "Cats",
     ..hexes.map(x => x * 1.5).map(x => calc.floor(x)).map(x => [#x])
-  )
-$
-
-// --- PAGE END 4/7
-
+  ),
+  caption: "Look Up Table for calculating max number of cats",
+)
 Unless otherwise stated, the cat modifiers only apply if the action card is used in a hex with a cat token. The cat modifiers are applied for each cat token in the hex.
 
 == Corruption
@@ -373,12 +521,29 @@ Some resources have requirements.
 = Visualizations
 #design-note(comment: "These are just suggestions; use your creativity!")[
   Items required:
-  + Pencils
-  + Crayons
-  + Erasers
-  + Glue
-  + Anything to enhance the tiles!
+  #columns()[
+    - Pencils
+    - Crayons
+    #colbreak()
+    - Erasers
+    - Glue
+  ]
+  Anything to enhance the tiles!
 ]
+
+== Player Card
+The players can draw whatever they want as their player character inside a hexagon.
+
+#block(
+  height: 8em,
+  width: 100%,
+  figure(
+    image("bestagon.svg", height: 1fr, width: 100%, fit: "contain"),
+    caption: "Outline for the hexagon where the players can create their character and write their final stats.",
+  ),
+)
+
+// --- PAGE END 5/7
 
 == Board
 #design-note(comment: "Hexagons are bestagons! :3")[
@@ -388,20 +553,6 @@ Some resources have requirements.
     figure(image("hex-grid.png", fit: "contain", height: 1fr), caption: "Example Hex Grid of length 3 (standard)"),
   )
 ]
-
-// --- PAGE END 5/7
-
-== Player Card
-The players can draw whatever they want as their player character inside a hexagon.
-
-#block(
-  height: 9em,
-  width: 100%,
-  figure(
-    image("bestagon.svg", height: 1fr, width: 100%, fit: "contain"),
-    caption: "Outline for the hexagon where the players can create their character and write their final stats.",
-  ),
-)
 
 The hexagon can then be attached to the grid so all the player cards are in the same place.
 
@@ -419,7 +570,10 @@ The hexagon can then be attached to the grid so all the player cards are in the 
 === Positive Action Cards
 #table(
   columns: 2,
-  [Effect], [Cat Modifier],
+  table.header(
+    [Effect],
+    [Cat Modifier],
+  ),
   // generic +1 to resources
   [+1 `Water` to all], [+1 `Animal`],
   [+1 `Plant` to all], [+1 `Water`],
@@ -433,10 +587,14 @@ The hexagon can then be attached to the grid so all the player cards are in the 
   // generic avoid bad card
   [skip the next negative card], [permanent +5% optimism],
 )
+
 === Negative Action Cards
 #table(
   columns: 2,
-  [Effect], [Cat Modifier],
+  table.header(
+    [Effect],
+    [Cat Modifier],
+  ),
   // generic -1 to resources
   [-1 `Water`], [adds +1 garbage],
   [-1 `Plant`], [adds +1 garbage],
@@ -457,8 +615,43 @@ The hexagon can then be attached to the grid so all the player cards are in the 
 
 = A description of an interesting and memorable moment
 
-= conclusion? // TODO
+= Conclusion? // TODO?
 
+= Glossary
+
+#columns(2)[
+  #list(
+    indent: -0.25em,
+    [/ Action Points (AP): Energy system for the game. <AP>],
+    [
+      / Skill Points (SP): Points allocated to skills that determine if the player can transmute garbage or not. <SP>
+    ],
+    [
+      / Optimism: A percentage based value that influences various game mechanics (not too dissimilar to luck.). <Optimism>
+    ],
+    [
+      / Garbage: Raw materians which can be #link(<Transmute>)[transmuted] into #link(<Resources>)[resources]. <Garbage>
+    ],
+    [/ Raw resources: See: #link(<Garbage>)[Garbage] <RawResources>],
+    [
+      / Resources: The refined materials created from garbage. Limited to `Water`, `Plant`, and `Animal` in the base game. <Resources>
+    ],
+  )
+  #colbreak()
+  #list(
+    indent: -0.25em,
+    [/ Corruption: The measurement of difficulty required to transmute garbage into a resource. <Corruption>],
+    [
+      / Corruption Level: The minimum skill level required to transmute garbage into a particular resource. <CorruptionLevel>
+    ],
+    [/ Hex: A single tile on the board. <Hex>],
+    [
+      / Cat Token: A token that provides bonuses when #link(<ActionCard>)[action cards] are used on a #link(<Hex>)[hex]. <CatToken>
+    ],
+    [/ Action Card: Cards that provide special actions or effects, both positive, and negative. <ActionCard>],
+    [/ Transmute: The process of converting garbage into resources. <Transmute>],
+  )
+]
 // --- PAGE END 7/7
 
 #pagebreak(weak: true)
