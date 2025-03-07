@@ -44,7 +44,7 @@
       #block[
         #align(left)[
           Phone Number: +918310783472\
-          Email: pawarherschel\@gmail.com
+          email: pawarherschel\@gmail.com
         ]
       ]
     ]
@@ -108,7 +108,7 @@
 === Theme
 Nature restoration and optimism
 
-#explanation(detail: "How is optimism used in the game?")[
+#explanation(detail: "How's optimism used in the game?")[
   ==== Optimism
 ]
 // / Optimism: "In the documentation, include a statement explaining how you used the theme “optimism”. Note that the theme should be weaved into the game design, e.g., the rule system, so that it is a central part of the game and not just a visual layer or merely an aspect of a backstory."
@@ -116,7 +116,7 @@ Nature restoration and optimism
 Optimism is an important part of the gameplay; it influences nearly every game mechanic, and it's not merely a goal the players need to complete to 100%. The decisions made in the game are reflected in the real world, as the players need to draw on the map to perform actions. This acts as physical evidence for the time they spent together, and hopefully, in dire times, they will look back at the map they created and get hope.
 
 === Core Gameplay Idea
-Three players come together to transform the garbage-filled map into scenic beauty by physically drawing on the map. They roll to gain action points, and the amount of action points is determined by the current optimism level.
+Three players come together to transform the garbage-filled map into scenic beauty by physically drawing on the map. They roll to gain action points, and the number of action points is determined by the current optimism level.
 
 #explanation(detail: "Short statement about the game")[
   == High Concept/Synopsis
@@ -141,9 +141,9 @@ Players want to relax and play with their friends. Once the game finishes, they 
 #explanation(detail: "Who is the game aimed at?")[
   == Target Audience
 ]
-People interested in relaxing with their friends
+People interested in relaxing with their friends.
 
-#explanation(detail: "Examples of similar products and comments on how it is different")[
+#explanation(detail: "Examples of similar products and comments on how it's different")[
   == Competition
 ]
 
@@ -162,13 +162,13 @@ People interested in relaxing with their friends
 //   block: true,
 // )
 
-"Re:Build Nature" differentiates itself from "Terra Nil" by offering a multiplayer experience with a strong emphasis on optimism. While "Re:Build Nature" also has animals and plants, ultimately it's up to the player's imagination on how they look. Also, due to the presence of action cards and cat tokens, the players need to strategize on what to do.
+"Re:Build Nature" differentiates itself from "Terra Nil" by offering a multiplayer experience with a strong emphasis on optimism. While "Re:Build Nature" also has animals and plants, it's up to the player's imagination on how they look. Also, due to the presence of action cards and cat tokens, the players need to strategize on what to do.
 
 #explanation(detail: "What makes the game idea unique?")[
   == Unique Selling Points
 ]
-- Physical evidence of completed game
-- Relaxing gameplay with friends
+- Physical evidence of completed game.
+- Relaxing gameplay with friends.
 
 #explanation(detail: "The important design aspects of your game that we want to instill")[
   == Design Goals
@@ -181,7 +181,7 @@ People interested in relaxing with their friends
 - Encourage homebrew and customization through a modular design
 - No fail state
 
-#explanation(detail: "Design aspects which we are explicitly trying to avoid")[
+#explanation(detail: "Design aspects that we're explicitly trying to avoid")[
   == Design non-goals
 ]
 - Mechanics which introduce competition between players
@@ -345,7 +345,7 @@ $ <APCalc>
 
 == Players' Move
 #design-note(
-  comment: "This gives freedom to the players. This way, if they get a negative action card and need to react to it, they are able to.",
+  comment: "This gives freedom to the players. This way, if they get a negative action card and need to react to it, they're able to.",
 )[
   The players strategize, if they need to move to some tile, they move towards the tile, if they need to perform actions, they spend AP to either refine resources or draw action cards. If they want to trade SP, they can spend AP to do so.
 
@@ -355,7 +355,7 @@ $ <APCalc>
 There is no fixed order that the players have to follow.
 The players are free to spend AP in any order they want.
 This phase ends once all the players have used their AP.
-APs do not carry over, use it, or lose it.
+APs don't carry over, use it, or lose it.
 
 == Cat Token Related Actions
 #design-note(
@@ -415,12 +415,12 @@ APs do not carry over, use it, or lose it.
 #columns[
   - 3% for visiting hex with cat
   - 3% for placing cat
-  - 2% for transmuting all the garbage in an hex
+  - 2% for transmuting all the garbage in a hex
   - 1% for trading
   #colbreak()
   - Drawing action cards
     - Positive action cards give +3%
-    - Negative action cards give -2%
+    - Negative action cards give --2%
     - Avoiding negative action cards give +1%
 ]
 
@@ -447,20 +447,20 @@ The player decides when and where to use the positive action card. The action ca
 ]
 
 == Trading Skill Points
-The players can trade skill points if and only if they're in the same hex and the skill category is same.
+The players can trade skill points if and only if they're in the same hex, and the skill category is same.
 
-E.g., if `A` has ${1, 2, 2(x)}$ and `B` has ${0(y), 2, 3}$, `A` cannot give $x$ and turn it into $y$.
+For example, if `A` has ${1, 2, 2(x)}$ and `B` has ${0(y), 2, 3}$, `A` can't give $x$ and turn it into $y$.
 
 #table(
   rows: 2,
   columns: 3,
   stroke: 0pt,
-  [*Illegal Trade*], box(width: 0.5em), [#box([`A` -> ${1,2,1(-1)}$]) and #box([`B` -> ${1(+1),2,3}$])],
-  [*Legal Trade*], box(width: 0.5em), [#box([`A` -> ${1,2,1(-1)}$]) and #box([`B` -> ${1,2,4(+1)}$])],
+  [*Invalid Trade*], box(width: 0.5em), [#box([`A` -> ${1,2,1(-1)}$]) and #box([`B` -> ${1(+1),2,3}$])],
+  [*Valid Trade*], box(width: 0.5em), [#box([`A` -> ${1,2,1(-1)}$]) and #box([`B` -> ${1,2,4(+1)}$])],
 )
 
 == Cat Token
-Cat tokens can only be placed in the current hex and they cannot be moved.
+Cat tokens can only be placed in the current hex, and they can't be moved.
 There is no max cat per hex; however, the maximum number of cats per board is calculated using @MaxCat.
 $
   "Max number of cats per board" = floor("number of hexes in the map" * 1.5)
@@ -495,21 +495,21 @@ Unless otherwise stated, the cat modifiers only apply if the action card is used
   comment: "Corruption level exists as a skill level check; hopefully this will encourage players to specialize their AP and also increase optimism level.",
 )[
   The corruption level is randomized on each tile.
-  Corruption level determines the minimum skill level required to transmute the garbage. Players need to roll a six-sided dice (1D6) for the corruption level for each resource (i.e., water, plant, and animal).
-  E.g., Level three corruption requires a minimum of level three skill.
-  Rolling to check for corruption level does not consume AP.
-  Corruption does not spread.
+  Corruption level determines the minimum skill level required to transmute the garbage. Players need to roll a six-sided dice (1D6) for the corruption level for each resource (that is, water, plant, and animal).
+  For example, Level three corruption requires a minimum of level three skill.
+  Rolling to check for corruption level doesn't consume AP.
+  Corruption doesn't spread.
 ]
 
 The players can only check for corruption level on the hex they're standing on.
 
 
 == Garbage
-There is three garbage per hex. Transmuting one garbage consumes one AP.
+There are three garbage per hex. Transmuting one garbage consumes one AP.
 The resources stack multiplicatively and can spill into other tiles depending on the stacking level.
 
-/ 1 stack: can spill into 1 other hex, decided by player
-/ 2 stack: can spill into 3 hex, decided by player
+/ 1 stack: can spill into 1 other hex, decided by the player
+/ 2 stack: can spill into 3 hexes, decided by the player
 / 3 stack: can spill into all neighbors
 
 Some resources have requirements.
@@ -554,7 +554,7 @@ The players can draw whatever they want as their player character inside a hexag
   )
 ]
 
-The hexagon can then be attached to the grid so all the player cards are in the same place.
+The hexagon can then be attached to the grid, so all the player cards are in the same place.
 
 == Cat Token
 #design-note(
@@ -596,15 +596,15 @@ The hexagon can then be attached to the grid so all the player cards are in the 
     [Cat Modifier],
   ),
   // generic -1 to resources
-  [-1 `Water`], [adds +1 garbage],
-  [-1 `Plant`], [adds +1 garbage],
-  [-1 `Animal`], [adds +1 garbage],
+  [--1 `Water`], [adds +1 garbage],
+  [--1 `Plant`], [adds +1 garbage],
+  [--1 `Animal`], [adds +1 garbage],
   // generic -1 to skills
   [temporary -1 to all skills], [ignore one of the -1],
   // generic -1 ap
   [-1 AP], [+1% optimism],
   // extreme bad luck
-  [cannot participate next round], [+1 AP],
+  [can't participate next round], [+1 AP],
   // oops?
   [lose one of your stashed card], [doubles cat token effectiveness this round],
 )
@@ -630,7 +630,7 @@ The hexagon can then be attached to the grid so all the player cards are in the 
       / Optimism: A percentage based value that influences various game mechanics (not too dissimilar to luck.). <Optimism>
     ],
     [
-      / Garbage: Raw materials which can be #link(<Transmute>)[transmuted] into #link(<Resources>)[resources]. <Garbage>
+      / Garbage: Raw materials that can be #link(<Transmute>)[transmuted] into #link(<Resources>)[resources]. <Garbage>
     ],
     [/ Raw resources: See: #link(<Garbage>)[Garbage] <RawResources>],
     [
@@ -714,6 +714,7 @@ in no particular order
 - Emý
 - Lucrious
 - nottoph
+- PerForkOp
 
 = Major Inspirations
 - Terra Nil
