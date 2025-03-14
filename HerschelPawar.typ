@@ -1,8 +1,13 @@
 #import "@preview/grape-suite:2.0.0": *
 #import "util.typ": *
+
 #set text(lang: "en")
 #set page(numbering: "1")
 #set math.equation(numbering: "~ Eq 1")
+#set par(linebreaks: "optimized")
+#set block(breakable: true)
+#show table.cell: set text(hyphenate: false)
+#show table.cell: set par(justify: false)
 #show table: it => align(center)[#it]
 
 #show: exercise.project.with(
@@ -50,6 +55,9 @@
     ]
   ],
 )
+
+#set list(indent: 0.25em)
+#set enum(indent: 0.25em)
 
 /*
 #exercise.task(
@@ -147,8 +155,6 @@ People interested in relaxing with their friends.
   == Competition
 ]
 
-// --- PAGE END 1/7
-
 === Terra Nil
 #quote(
   "Terra Nil is an intricate environmental strategy game about transforming a barren wasteland into a thriving, balanced ecosystem. Bring life back to a lifeless world by purifying soil, cleaning oceans, planting trees, and reintroducing wildlife, then leave without a trace.",
@@ -167,9 +173,11 @@ People interested in relaxing with their friends.
 #explanation(detail: "What makes the game idea unique?")[
   == Unique Selling Points
 ]
-- Physical evidence of completed game.
-- Relaxing gameplay with friends.
-
+#columns(2)[
+  - Physical evidence of completed game.
+  #colbreak()
+  - Relaxing gameplay with friends.
+]
 #explanation(detail: "The important design aspects of your game that we want to instill")[
   == Design Goals
 ]
@@ -207,12 +215,10 @@ People interested in relaxing with their friends.
 *Recommendation*: The players can attach their player cards to the outside of the grid, and that would be their starting position.
 
 == Action Point Generation <RoundStart>
-At the start of the round, all players roll a ten-sided dice (1D10) which generates action points (APs) according @APCalc.
+At the start of the round, all players roll a ten-sided dice (1D6) which generates action points (APs) according @APCalc.
 $
-  "AP" &= 1 + floor("Bias" (#[@OptimismBias]) * "dice roll"/10)
+  "AP" &= 1 + floor("Bias" (#[@OptimismBias]) * "dice roll"/6)
 $ <APCalc>
-
-// --- PAGE END 2/7
 
 #let thresholds = (
   0,
@@ -265,7 +271,9 @@ $ <APCalc>
     (3, 4)
   } else if o < thresholds.at(8) {
     (4,)
-  } else { (5,) }
+  } else if o < thresholds.at(9) {
+    (5,)
+  } else { (6,) }
 
   let (ret, idx, len) = if possible.len() == 1 {
     (possible.at(0), 0, 1)
@@ -281,7 +289,6 @@ $ <APCalc>
 }
 
 #let vals = (
-  // range(0, 101)
   thresholds
     .map(o => {
       range(1, 7).map(dice => op-bias(o: o, dice: dice))
@@ -294,27 +301,75 @@ $ <APCalc>
     .flatten()
 )
 
+// #(
+//   thresholds
+//     .map(o => {
+//       range(1, 7).map(dice => op-bias(o: o, dice: dice))
+//     })
+//     .flatten()
+//     .chunks(6)
+// )
+
+#let vals = (
+  thresholds
+    .map(o => {
+      range(1, 7).map(dice => op-bias(o: o, dice: dice))
+    })
+    .flatten()
+    .chunks(6)
+    .map(it => {
+      let biases = it.map(d => d.bias).dedup()
+      let biases = biases.map(bias => (bias: bias, values: it.filter(b => b.bias == bias)))
+
+      let b2 = biases.map(it => {
+        let (bias, values) = it
+
+        let o = values.first().o
+        let min = values.first().dice
+        let max = values.last().dice
+
+        (o: o, bias: bias, min: min, max: max)
+      })
+
+      b2
+    })
+    .flatten()
+)
+
 #let soa-vals = vals.fold(
-  (o: (), dice: (), bias: ()),
+  (o: (), min: (), bias: (), max: ()),
   (acc, it) => {
-    let (o, dice, bias) = it
+    let (o, bias, min, max) = it
     acc.o.push(o)
-    acc.dice.push(dice)
+    acc.min.push(min)
+    acc.max.push(max)
     acc.bias.push(bias)
 
     acc
   },
 )
 #let OptimismTable = {
-  let style-a(val: int) = {
-    let color = oklch(100%, 50%, (val / 7 * 360deg))
+  let style-a(max: int, min: -1) = {
+    // if type(min) != type(-1) {
+    //   panic("MEOW??????")
+    // }
+
+    let color = oklch(100%, 50%, (max / 7 * 360deg))
     table.cell(fill: color)[
-      #val
+      #if min != -1 and min != max {
+        rotate(-90deg, reflow: true)[
+          #if min == 1 and max == 6 { [always] } else {
+            range(min, max + 1).map(it => str(it)).join(", ")
+          }
+        ]
+      } else {
+        [#max]
+      }
     ]
   }
 
   let style-b(val: int, s: str) = {
-    let color = oklch(100%, 90%, (val / 101 * 360deg))
+    let color = oklch(100%, 90%, (val / 125 * 360deg))
     let c = rotate(-90deg, reflow: true)[#val#s]
     let c = table.cell(fill: color)[#c]
     c
@@ -333,11 +388,11 @@ $ <APCalc>
     style-c(val: "Minimum Optimism Level"),
     ..soa-vals.o.map(it => style-b(val: it, s: "%")),
 
-    style-c(val: "Max Dice Value"),
-    ..soa-vals.dice.map(it => (style-a(val: it))),
+    style-c(val: "Dice Values"),
+    ..soa-vals.max.zip(soa-vals.min).map(it => (style-a(max: it.at(0), min: it.at(1)))),
 
     style-c(val: "Action Points"),
-    ..soa-vals.bias.map(it => style-a(val: it + 1))
+    ..soa-vals.bias.map(it => style-a(max: it + 1))
   )
 }
 
@@ -348,20 +403,17 @@ $ <APCalc>
   comment: "This gives freedom to the players. This way, if they get a negative action card and need to react to it, they're able to.",
 )[
   The players strategize, if they need to move to some tile, they move towards the tile, if they need to perform actions, they spend AP to either refine resources or draw action cards. If they want to trade SP, they can spend AP to do so.
-
   Refer to the rules (#link(<SpendAP>)[@SpendAP]) to see what players can do with AP.
+  There is no fixed order that the players have to follow.
 ]
-
-There is no fixed order that the players have to follow.
 The players are free to spend AP in any order they want.
 This phase ends once all the players have used their AP.
 APs don't carry over, use it, or lose it.
-
 == Cat Token Related Actions
 #design-note(
   comment: "I love cats; they make everything better for me. That's why cat tokens are being used to amplify the positive action cards.",
 )[
-  The players have a chance to place a cat on the hex they're currently in. The players roll a six-sided dice, which will decide if they can place a cat. The chance is calculated using @CatCalc.
+  The players have a chance to place a cat on the hex they're currently in. The players roll a six-sided dice, which will decide if they can place a cat. The chace is calculated using @CatCalc.
   Only one roll per round.
   $
     "Success?" = cases(
@@ -387,11 +439,12 @@ APs don't carry over, use it, or lose it.
 )
 
 
-// --- PAGE END 3/7
-
-== Round Over
-#design-note(comment: "Trying to mimic the process of specialization in real life")[
-  Players get 1 additional skill point at the following optimism thresholds
+#block[== Round Over]
+#design-note(
+  comment: "Trying to mimic the process of specialization in real life",
+  bottom: true,
+)[
+  Players get 1 additional SP at the following optimism thresholds
   #columns(4)[
     + 25%
     #colbreak()
@@ -401,14 +454,13 @@ APs don't carry over, use it, or lose it.
     #colbreak()
     + 100%
   ]
-  Go to #link(<RoundStart>)[Action Point Generation]
 ]
+Go to #link(<RoundStart>)[Action Point Generation]
+
 == Game Over
-#design-note(comment: "The goal is to have fun")[
-  The game is over either when
-  the players are satisfied with the map
-  or all the garbage has been refined into resources
-]
+The game is over when
+the players are happy with the map
+or all the garbage has been refined.
 
 = Rules of the game
 == Gaining Optimism
@@ -425,7 +477,7 @@ APs don't carry over, use it, or lose it.
 ]
 
 == Using AP <SpendAP>
-#columns()[
+#columns(2)[
   - Draw an Action Card
   - Travel to another hex
   - Transmute garbage into resources
@@ -447,26 +499,23 @@ The player decides when and where to use the positive action card. The action ca
 ]
 
 == Trading Skill Points
-The players can trade skill points if and only if they're in the same hex, and the skill category is same.
-
-For example, if `A` has ${1, 2, 2(x)}$ and `B` has ${0(y), 2, 3}$, `A` can't give $x$ and turn it into $y$.
-
-#table(
-  rows: 2,
-  columns: 3,
-  stroke: 0pt,
-  [*Invalid Trade*], box(width: 0.5em), [#box([`A` -> ${1,2,1(-1)}$]) and #box([`B` -> ${1(+1),2,3}$])],
-  [*Valid Trade*], box(width: 0.5em), [#box([`A` -> ${1,2,1(-1)}$]) and #box([`B` -> ${1,2,4(+1)}$])],
-)
-
+There are four requirements to trade skill points.
+#columns(2)[
+  1. The player giving skill has enough AP
+  2. Negative skill points don't aren't valid
+  #colbreak()
+  3. They're both in the same hex
+  4. The skill category is the same
+]
 == Cat Token
 Cat tokens can only be placed in the current hex, and they can't be moved.
 There is no max cat per hex; however, the maximum number of cats per board is calculated using @MaxCat.
+
+Unless otherwise stated, the cat modifiers only apply if the action card is used in a hex with a cat token. The cat modifiers are applied for each cat token in the hex.
+
 $
   "Max number of cats per board" = floor("number of hexes in the map" * 1.5)
 $ <MaxCat>
-
-// --- PAGE END 4/7
 
 #let hexes = (8, 23, 46)
 #figure(
@@ -488,9 +537,8 @@ $ <MaxCat>
   ),
   caption: "Look Up Table for calculating max number of cats",
 )
-Unless otherwise stated, the cat modifiers only apply if the action card is used in a hex with a cat token. The cat modifiers are applied for each cat token in the hex.
 
-== Corruption
+#block[== Corruption]
 #design-note(
   comment: "Corruption level exists as a skill level check; hopefully this will encourage players to specialize their AP and also increase optimism level.",
 )[
@@ -499,62 +547,147 @@ Unless otherwise stated, the cat modifiers only apply if the action card is used
   For example, Level three corruption requires a minimum of level three skill.
   Rolling to check for corruption level doesn't consume AP.
   Corruption doesn't spread.
+  The corruption levels are calculated once a player enters the hex.
 ]
-
-The players can only check for corruption level on the hex they're standing on.
-
 
 == Garbage
 There are three garbage per hex. Transmuting one garbage consumes one AP.
 The resources stack multiplicatively and can spill into other tiles depending on the stacking level.
+Here, spilling means that the hex being spilled into gets a +1 bonus for the resource and you need to indicate which hex is being spilled into by drawing.
 
-/ 1 stack: can spill into 1 other hex, decided by the player
-/ 2 stack: can spill into 3 hexes, decided by the player
-/ 3 stack: can spill into all neighbors
-
+#columns(3)[
+  / 1 stack: cannot spill
+  #colbreak()
+  / 2 stack: upto 3 hexes
+  #colbreak()
+  / 3 stack: upto 6 hexes
+]
 Some resources have requirements.
 
-- `Water`: none
-- `Plant`: require `Water`
-- `Animal`: require `Water` and `Plant`
+#box()[- `Water`: none]
+#h(1fr)
+#box()[- `Plant`: require `Water`]
+#h(1fr)
+#box()[- `Animal`: require `Water` and `Plant`]
 
 = Visualizations
 #design-note(comment: "These are just suggestions; use your creativity!")[
   Items required:
-  #columns()[
+  #columns(4)[
     - Pencils
+    #colbreak()
     - Crayons
     #colbreak()
     - Erasers
+    #colbreak()
     - Glue
   ]
   Anything to enhance the tiles!
 ]
 
-== Player Card
-The players can draw whatever they want as their player character inside a hexagon.
+== Board
 
-#block(
-  height: 8em,
-  width: 100%,
-  figure(
-    image("bestagon.svg", height: 1fr, width: 100%, fit: "contain"),
-    caption: "Outline for the hexagon where the players can create their character and write their final stats.",
+The players need to have two boards. One serves as the "data layer", used to track how many resources are present, the corruption levels and how many raw resources are remaining. The other one is used for drawing the map.
+
+#let design-note(bottom: false, comment: [], content) = {
+  set par(justify: true)
+  set text(hyphenate: true)
+
+  grid(
+    columns: if bottom { 1 } else { 2 },
+    column-gutter: if bottom { 0em } else { 1em },
+    rows: if bottom { 2 } else { 1 },
+    row-gutter: if bottom { 1em } else { 2em },
+    box(
+      width: 100%,
+      {
+        set par(justify: true)
+        set text(hyphenate: true)
+
+        content
+      },
+    ),
+    {
+      set par(justify: true)
+      set text(hyphenate: true)
+
+      if bottom {
+        rect(fill: luma(240), width: 100%)[
+          *Design Note:* #comment
+        ]
+      } else {
+        rect(width: 13em, fill: luma(240))[
+          *Design Note:* #comment
+        ]
+      }
+    },
+  )
+}
+
+// #design-note(comment: "Hexagons are bestagons! :3")[]
+#grid(
+  columns: 2,
+  column-gutter: 1em,
+  rows: 1,
+  row-gutter: 2em,
+  box(
+    width: 100%,
+    block(
+      height: 17em,
+      width: 100%,
+      figure(image("hex-grid.png", fit: "contain", height: 1fr), caption: "Example Hex Grid of length 3 (standard)"),
+    ),
   ),
+  [
+    #block(width: 13em, height: 17em)[
+      #rect(width: 100%, fill: luma(240))[
+        *Design Note:* Hexagons are bestagons! :3
+      ]
+      #{
+        show figure: it => {
+          let body = it.body
+          let cap = it.caption
+          let supp = it.supplement
+          let num = it.numbering
+
+          set text(hyphenate: false)
+          set par(justify: false)
+
+          grid(
+            columns: 2,
+            body, align(left + horizon, cap),
+          )
+        }
+
+        block(height: 1fr)[
+          #figure(
+            image(
+              "grid-cell.inkscape.svg",
+              width: 100%,
+              height: 1fr,
+              fit: "contain",
+            ),
+            caption: "Layout for a single \"data layer\" hex",
+          )
+        ]
+        block(height: 1fr)[
+          #figure(
+            image(
+              "grid-cell-example.inkscape.svg",
+              width: 100%,
+              height: 1fr,
+              fit: "contain",
+            ),
+            caption: "Example of a hex",
+          )
+        ]
+      }
+    ]
+  ],
 )
 
-// --- PAGE END 5/7
-
-== Board
-#design-note(comment: "Hexagons are bestagons! :3")[
-  #block(
-    height: 20em,
-    width: 100%,
-    figure(image("hex-grid.png", fit: "contain", height: 1fr), caption: "Example Hex Grid of length 3 (standard)"),
-  )
-]
-
-The hexagon can then be attached to the grid, so all the player cards are in the same place.
+== Player Card
+The players can draw whatever they want as their player character inside a hexagon.
 
 == Cat Token
 #design-note(
@@ -566,56 +699,144 @@ The hexagon can then be attached to the grid, so all the player cards are in the
 
 // enhancement: add flavor text and name
 // enhancement: more creative cards lol
+
 == Cards
-=== Positive Action Cards
-#table(
+#grid(
   columns: 2,
-  table.header(
-    [Effect],
-    [Cat Modifier],
-  ),
-  // generic +1 to resources
-  [+1 `Water` to all], [+1 `Animal`],
-  [+1 `Plant` to all], [+1 `Water`],
-  [+1 `Animal` to all], [+1 `Plant`],
-  // generic +1 to skills
-  [temporary +1 to all skills to all], [temporary +1 skill point],
-  // generic +1 ap
-  [+1 AP to spend in current round], [+1 AP next round],
-  // generic +% optimism
-  [temporary +10% optimism], [permanent +1% optimism],
-  // generic avoid bad card
-  [skip the next negative card], [permanent +5% optimism],
+  column-gutter: 1em,
+  align: center + horizon,
+  [
+    === Positive Action Cards
+    #table(
+      columns: 2,
+      table.header(
+        [Effect],
+        [Cat Modifier],
+      ),
+      // generic +1 to resources
+      [+1 `Water` Skill], [+1 `Animal`],
+      [+1 `Plant` Skill], [+1 `Water`],
+      [+1 `Animal` Skill], [+1 `Plant`],
+      // generic +1 to skills
+      [+3 skill points], [+1 skill point to all],
+      // generic +1 ap
+      [+1 AP], [+1 AP to all],
+      // generic +% optimism
+      [temporary +10% optimism], [permanent +1% optimism],
+      // generic avoid bad card
+      [skip the next negative card], [permanent +5% optimism],
+    )
+  ],
+  [
+    === Negative Action Cards
+    #table(
+      columns: 2,
+      table.header(
+        [Effect],
+        [Cat Modifier],
+      ),
+      // generic -1 to resources
+      [--1 `Water` Skill], [adds +1 garbage],
+      [--1 `Plant` Skill], [adds +1 garbage],
+      [--1 `Animal` Skill], [adds +1 garbage],
+      // generic -1 to skills
+      [--1 to all skill levels], [gain +4 skill levels],
+      // generic -1 ap
+      [--1 AP], [+1% optimism],
+      // extreme bad luck
+      [can't participate next round], [+1 AP],
+      // oops?
+      [lose one of your stashed card], [skip next negative card],
+    )
+  ],
 )
-
-=== Negative Action Cards
-#table(
-  columns: 2,
-  table.header(
-    [Effect],
-    [Cat Modifier],
-  ),
-  // generic -1 to resources
-  [--1 `Water`], [adds +1 garbage],
-  [--1 `Plant`], [adds +1 garbage],
-  [--1 `Animal`], [adds +1 garbage],
-  // generic -1 to skills
-  [temporary -1 to all skills], [ignore one of the -1],
-  // generic -1 ap
-  [-1 AP], [+1% optimism],
-  // extreme bad luck
-  [can't participate next round], [+1 AP],
-  // oops?
-  [lose one of your stashed card], [doubles cat token effectiveness this round],
-)
-
-// --- PAGE END 6/7
 
 = A report of testing the game
 
+The testing was done by meeting in real life and hosting a game.
+Two of my friends (Ashutosh, and Divyesh) joined me to play the game (see: @all-of-us-photo).
+A two hour session was held.
+The drawing part was done on pc, using the digital painting application #link("https://krita.org/en/")[Krita] and a pentablet (#link("https://www.xp-pen.com/product/deco-fun-xs-s-l.html")[XP-Pen Deco Fun L]).
+The data layer was done on a paper (see: @final-hex-grid-photo).
+We used out keychains as player tokens to track position (see: @A-token-photo, @D-token-photo, and @H-token-photo).
+
+These were the major problems we encountered and what I did to remedy them.
+
+#columns(2, gutter: -0.5em)[
+  - +1 `Water` felt weird resource
+    - Rework it to give +1 skill instead
+  - The AP generation rules were confusing
+    - Made the lookup table easier to refer
+  - Rules were unclear and ambiguous
+    - Tried my best to clarify them
+  #colbreak()
+  - Very few avenues to increase optimism
+    - Did nothing, working as intended
+  - Checking for corruption was after the turn felt like cheating
+    - Made it so the corruption is automatically rolled everytime someone enters a new hex
+]
+
 = A description of an interesting and memorable moment
 
-= Conclusion? // TODO?
+- I got a negative card in the first round and made the optimism level negative, my friends playfully teased me the whole game.
+- We were very excited to reach 10% optimism as we won't be limited to one AP.
+  - "Gambling" by drawing action cards when optimism level was below 10% felt similar to how how every action taken when suffering from depression felt like a gamble.
+- Divyesh rolled for AP when it was Ashutosh's turn, he got a 6, we peer pressured Ashutosh to roll instead of taking the 6 and he got 1.
+- Ashutosh drew a "--1 `Animal`" action card, we cheered him for an encore, and he got "+1 `Animal`", making it so he ended his turn with +1 `Animal` skill level.
+
+#block(height: 1fr)[
+  #photo-gallery(
+    columns: 3,
+    imgs: (
+      (path: "IMG_20250308_200600058.jpg", caption: "Ashutosh's Token", label-text: "A-token-photo"),
+      (path: "IMG_20250308_200541249.jpg", caption: "Divyesh's Token", label-text: "D-token-photo"),
+      (path: "IMG_20250308_200545983.jpg", caption: "Herschel's (my) Token", label-text: "H-token-photo"),
+    ),
+  )
+]
+
+#rect(
+  height: 10em,
+  stroke: none,
+)[
+  #photo-gallery(
+    columns: 3,
+    imgs: (
+      (path: "IMG_20250308_161747799.jpg", caption: "Meeting up to play", label-text: "all-of-us-photo"),
+      (path: "IMG_20250308_191637941.jpg", caption: "Discusing Moves", label-text: "discussion-photo"),
+      // (path: "IMG_20250308_191642770.jpg", caption: ""),
+      (path: "IMG_20250308_200427006.jpg", caption: "Final Positions", label-text: "final-hex-grid-photo"),
+    ),
+  )
+]
+
+#par[
+  #box(width: 1fr)[
+    #figure(
+      image(
+        "hex-grid-drawing.png",
+        fit: "contain",
+      ),
+      kind: "Photo",
+      supplement: "Photo",
+      caption: "Final Map",
+    ) <final-map-photo>
+  ]
+  #box(
+    width: 3fr,
+    quote(
+      "The game is really fun to play with friends. Although the learning curve is a bit steep and the game is kinda slow, working cooperatively with friends and building up optimism (actual and mechanistic) to fill the map is really fun.",
+      block: true,
+      attribution: "Divyesh",
+    ),
+  )
+]
+
+= Conclusion
+
+Once I got hang of how to use optimism as a mechanic, I was able to use my personal experience with fighting depression as inspiration. I tried my best to represent my feelings as game mechanics. Similar to how starting the journey to heal depression feels extremely difficult and slow, the game starts slow and feels like we made no progress. Every move felt like a gamble, it might either make me feel better, or it might worsen the situation. However, with the help of my friends, I persevered, and slowly, but surely got better. After a while my recovery started accelerating and I was able to study, and do everyday tasks which felt like a drag. Everytime something positive happened, be it playing games with my friends or getting to pet a stray cat, it boosted my moral. It feels good to look back at the game screenshots, photos, and chat messages.
+
+This was the first board game I made and there were a lot of oversights, but I trusted in my friends to give me good feedback and they delivered. As for the core gameplay, I believe I was able to weave the feeling of optimism through hope into the game mechanics.
 
 = Glossary
 
@@ -652,7 +873,6 @@ The hexagon can then be attached to the grid, so all the player cards are in the
     [/ Transmute: The process of converting garbage into resources. <Transmute>],
   )
 ]
-// --- PAGE END 7/7
 
 #pagebreak(weak: true)
 
@@ -719,6 +939,7 @@ in no particular order
 = Major Inspirations
 - Terra Nil
 - Wall-E
+- Gartic Phone
 - #youtube-link(
     creator: "Adam Millard - The Architect of Games",
     title: "Terra Nil Claims It's A Reverse Citybuilder. It Isn't.",
