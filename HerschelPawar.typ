@@ -155,6 +155,8 @@ People interested in relaxing with their friends.
   == Competition
 ]
 
+// -- PAGE END 1/7
+
 === Terra Nil
 #quote(
   "Terra Nil is an intricate environmental strategy game about transforming a barren wasteland into a thriving, balanced ecosystem. Bring life back to a lifeless world by purifying soil, cleaning oceans, planting trees, and reintroducing wildlife, then leave without a trace.",
@@ -219,6 +221,8 @@ At the start of the round, all players roll a ten-sided dice (1D6) which generat
 $
   "AP" &= 1 + floor("Bias" (#[@OptimismBias]) * "dice roll"/6)
 $ <APCalc>
+
+// -- PAGE END 2/7
 
 #let thresholds = (
   0,
@@ -402,7 +406,7 @@ $ <APCalc>
 #design-note(
   comment: "This gives freedom to the players. This way, if they get a negative action card and need to react to it, they're able to.",
 )[
-  The players strategize, if they need to move to some tile, they move towards the tile, if they need to perform actions, they spend AP to either refine resources or draw action cards. If they want to trade SP, they can spend AP to do so.
+  The players strategize, if they need to move to some tile, they move towards the tile, if they need to perform actions, they can spend AP to either refine resources or draw action cards. If they want to trade SP, they can spend AP to do so.
   Refer to the rules (#link(<SpendAP>)[@SpendAP]) to see what players can do with AP.
   There is no fixed order that the players have to follow.
 ]
@@ -413,7 +417,7 @@ APs don't carry over, use it, or lose it.
 #design-note(
   comment: "I love cats; they make everything better for me. That's why cat tokens are being used to amplify the positive action cards.",
 )[
-  The players have a chance to place a cat on the hex they're currently in. The players roll a six-sided dice, which will decide if they can place a cat. The chace is calculated using @CatCalc.
+  The players have a chance to place a cat on the hex they're currently in. The players roll a six-sided dice, which decides if they can place a cat. The chace is calculated using @CatCalc.
   Only one roll per round.
   $
     "Success?" = cases(
@@ -430,7 +434,7 @@ APs don't carry over, use it, or lose it.
     ..for i in range(1, 7) {
       ([#i],)
     },
-    "minimum Optimism",
+    "minimum optimism",
     ..for i in range(1, 7) {
       ([#{ calc.floor(i / 6 * 100) }],)
     }
@@ -444,7 +448,7 @@ APs don't carry over, use it, or lose it.
   comment: "Trying to mimic the process of specialization in real life",
   bottom: true,
 )[
-  Players get 1 additional SP at the following optimism thresholds
+  Players get 1 more SP at the following optimism thresholds
   #columns(4)[
     + 25%
     #colbreak()
@@ -454,6 +458,9 @@ APs don't carry over, use it, or lose it.
     #colbreak()
     + 100%
   ]
+
+  // -- PAGE END 3/7
+
 ]
 Go to #link(<RoundStart>)[Action Point Generation]
 
@@ -539,6 +546,9 @@ $ <MaxCat>
 )
 
 #block[== Corruption]
+
+// -- PAGE END 4/7
+
 #design-note(
   comment: "Corruption level exists as a skill level check; hopefully this will encourage players to specialize their AP and also increase optimism level.",
 )[
@@ -556,7 +566,7 @@ The resources stack multiplicatively and can spill into other tiles depending on
 Here, spilling means that the hex being spilled into gets a +1 bonus for the resource and you need to indicate which hex is being spilled into by drawing.
 
 #columns(3)[
-  / 1 stack: cannot spill
+  / 1 stack: can't spill
   #colbreak()
   / 2 stack: upto 3 hexes
   #colbreak()
@@ -625,67 +635,80 @@ The players need to have two boards. One serves as the "data layer", used to tra
 }
 
 // #design-note(comment: "Hexagons are bestagons! :3")[]
-#grid(
-  columns: 2,
-  column-gutter: 1em,
-  rows: 1,
-  row-gutter: 2em,
-  box(
-    width: 100%,
-    block(
-      height: 17em,
+#{
+  let thingy-height = 19em
+
+  grid(
+    columns: 2,
+    column-gutter: 1em,
+    rows: 1,
+    row-gutter: 2em,
+    box(
       width: 100%,
-      figure(image("hex-grid.png", fit: "contain", height: 1fr), caption: "Example Hex Grid of length 3 (standard)"),
+      block(
+        height: thingy-height,
+        width: 100%,
+        figure(
+          image(
+            "hex-grid.png",
+            fit: "contain",
+            height: 1fr,
+          ),
+          caption: "Example Hex Grid of length 3 (standard)",
+        ),
+      ),
     ),
-  ),
-  [
-    #block(width: 13em, height: 17em)[
-      #rect(width: 100%, fill: luma(240))[
-        *Design Note:* Hexagons are bestagons! :3
-      ]
-      #{
-        show figure: it => {
-          let body = it.body
-          let cap = it.caption
-          let supp = it.supplement
-          let num = it.numbering
+    [
+      #block(width: 19em, height: thingy-height)[
+        #align(right)[
+          #rect(width: 13em, fill: luma(240))[
+            *Design Note:* Hexagons are bestagons! :3
+          ]
+        ]
 
-          set text(hyphenate: false)
-          set par(justify: false)
+        #{
+          show figure: it => {
+            let body = it.body
+            let cap = it.caption
+            let supp = it.supplement
+            let num = it.numbering
 
-          grid(
-            columns: 2,
-            body, align(left + horizon, cap),
-          )
+            set text(hyphenate: false)
+            set par(justify: false)
+
+            grid(
+              columns: 2,
+              body, align(left + horizon, cap),
+            )
+          }
+
+          block(height: 1fr)[
+            #figure(
+              image(
+                "grid-cell.inkscape.svg",
+                width: 100%,
+                height: 1fr,
+                fit: "contain",
+              ),
+              caption: "Layout for a single \"data layer\" hex",
+            )
+          ]
+          block(height: 1fr)[
+            #figure(
+              image(
+                "grid-cell-example.inkscape.svg",
+                width: 100%,
+                height: 1fr,
+                fit: "contain",
+              ),
+              caption: "Example of a hex",
+            )
+          ]
         }
-
-        block(height: 1fr)[
-          #figure(
-            image(
-              "grid-cell.inkscape.svg",
-              width: 100%,
-              height: 1fr,
-              fit: "contain",
-            ),
-            caption: "Layout for a single \"data layer\" hex",
-          )
-        ]
-        block(height: 1fr)[
-          #figure(
-            image(
-              "grid-cell-example.inkscape.svg",
-              width: 100%,
-              height: 1fr,
-              fit: "contain",
-            ),
-            caption: "Example of a hex",
-          )
-        ]
-      }
-    ]
-  ],
-)
-
+      ]
+    ],
+  )
+}
 == Player Card
 The players can draw whatever they want as their player character inside a hexagon.
 
@@ -695,6 +718,9 @@ The players can draw whatever they want as their player character inside a hexag
   bottom: true,
 )[
   Draw a cat and then cut around the cat, so there is minimal paper, and then glue it on the grid.
+
+  // -- PAGE END 5/7
+
 ]
 
 // enhancement: add flavor text and name
@@ -756,7 +782,7 @@ The players can draw whatever they want as their player character inside a hexag
 The testing was done by meeting in real life and hosting a game.
 Two of my friends (Ashutosh, and Divyesh) joined me to play the game (see: @all-of-us-photo).
 A two hour session was held.
-The drawing part was done on pc, using the digital painting application #link("https://krita.org/en/")[Krita] and a pentablet (#link("https://www.xp-pen.com/product/deco-fun-xs-s-l.html")[XP-Pen Deco Fun L]).
+The drawing part was done on pc, using the digital painting app #link("https://krita.org/en/")[Krita] and a pentablet (#link("https://www.xp-pen.com/product/deco-fun-xs-s-l.html")[XP-Pen Deco Fun L]).
 The data layer was done on a paper (see: @final-hex-grid-photo).
 We used out keychains as player tokens to track position (see: @A-token-photo, @D-token-photo, and @H-token-photo).
 
@@ -780,7 +806,7 @@ These were the major problems we encountered and what I did to remedy them.
 
 - I got a negative card in the first round and made the optimism level negative, my friends playfully teased me the whole game.
 - We were very excited to reach 10% optimism as we won't be limited to one AP.
-  - "Gambling" by drawing action cards when optimism level was below 10% felt similar to how how every action taken when suffering from depression felt like a gamble.
+  - "Gambling" by drawing action cards when optimism level was below 10% felt similar to how every action taken when suffering from depression felt like a gamble.
 - Divyesh rolled for AP when it was Ashutosh's turn, he got a 6, we peer pressured Ashutosh to roll instead of taking the 6 and he got 1.
 - Ashutosh drew a "--1 `Animal`" action card, we cheered him for an encore, and he got "+1 `Animal`", making it so he ended his turn with +1 `Animal` skill level.
 
@@ -794,6 +820,8 @@ These were the major problems we encountered and what I did to remedy them.
     ),
   )
 ]
+
+// -- PAGE END 6/7
 
 #rect(
   height: 10em,
@@ -836,7 +864,7 @@ These were the major problems we encountered and what I did to remedy them.
 
 Once I got hang of how to use optimism as a mechanic, I was able to use my personal experience with fighting depression as inspiration. I tried my best to represent my feelings as game mechanics. Similar to how starting the journey to heal depression feels extremely difficult and slow, the game starts slow and feels like we made no progress. Every move felt like a gamble, it might either make me feel better, or it might worsen the situation. However, with the help of my friends, I persevered, and slowly, but surely got better. After a while my recovery started accelerating and I was able to study, and do everyday tasks which felt like a drag. Everytime something positive happened, be it playing games with my friends or getting to pet a stray cat, it boosted my moral. It feels good to look back at the game screenshots, photos, and chat messages.
 
-This was the first board game I made and there were a lot of oversights, but I trusted in my friends to give me good feedback and they delivered. As for the core gameplay, I believe I was able to weave the feeling of optimism through hope into the game mechanics.
+This was the first board game I made and there were many oversights, but I trusted in my friends to give me good feedback and they delivered. As for the core gameplay, I believe I was able to weave the feeling of optimism through hope into the game mechanics.
 
 = Glossary
 
@@ -875,6 +903,8 @@ This was the first board game I made and there were a lot of oversights, but I t
 ]
 
 #pagebreak(weak: true)
+
+// -- PAGE END 7/7
 
 /*
 #exercise.task(
