@@ -76,4 +76,25 @@
   - [ ] dungeon meshi, food brings people together
     - [ ] isutsumi, more cat than human, learns the warmth of human bonds
   - [ ] flow movie: cute optimistic cat
+- [ ] scan the typ file for inline comments and add them to checklist lol
+```
+
+= process
+```md
+# checklist
++ raw word vomit
++ leave it, youll get better ideas later when you dont want to think about it
++ ask friends for inspirations and what they interpret it [^others-thought]
++ throw stuff at the wall until something squeaks
++ write down the squeaky one as checklist points
++ block out the top headings
++ fill the headings from top to bottom while checking the checklist
++ grammar and spelling fix
++ ask people for feedback
++ iterate, iterate, iterate
++ playtest and instantly write down anything even remotely interesting
++ incorporate important fixes
++ put rest as future improvement
+
+[^others-thought]: - [ ] add a list of games which they suggested, and their interpretation
 ```
