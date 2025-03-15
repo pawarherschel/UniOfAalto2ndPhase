@@ -22,7 +22,9 @@
   let title = [
     Re:Build Nature
     #if subtitle != [] { [--- #subtitle] }
-    #context if not t.get() { [(WC: #total-words)] }
+    #context if not t.get() {
+      text(font: "JetBrainsMono NF", size: 0.8em)[(WC: #total-words)]
+    }
   ]
 
   context if not t.get() {
