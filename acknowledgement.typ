@@ -43,3 +43,30 @@ in alphabetical order
     title: "This Psychological Trick Makes Rewards Backfire",
     video-link: "https://www.youtube.com/watch?v=1ypOUn6rThM",
   )
+
+= Miscellaneous
+- #youtube-link(
+    video-link: "https://www.youtube.com/watch?v=7L8vAGGitr8",
+    title: "How Game Designers Protect Players From Themselves",
+    creator: "Game Maker's Toolkit",
+  )
+- #youtube-link(
+    video-link: "https://www.youtube.com/watch?v=bsC8io4w1sY",
+    title: "Analysis: Why We Should Buff More Than Nerf",
+    creator: "Core-A Gaming",
+  )
+- #youtube-link(
+    video-link: "https://www.youtube.com/watch?v=G9FB5R4wVno",
+    title: "Roguelikes, Persistency, and Progression",
+    creator: "Game Maker's Toolkit",
+  )
+- #youtube-link(
+    video-link: "https://www.youtube.com/watch?v=o78L0DPMGQg",
+    title: "Ten Free 3D-Printed Board Games Too Silly for Stores",
+    creator: "Zack Freedman",
+  )
+- #youtube-link(
+    video-link: "https://www.youtube.com/watch?v=Iqz7ZDdP25A",
+    title: "Hextraction: The Free 3D-Printed Board Game You Make, Mod, and Master",
+    creator: "Zack Freedman",
+  )

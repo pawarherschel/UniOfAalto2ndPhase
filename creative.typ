@@ -25,13 +25,86 @@
   ]
 }
 
+#let pre = ```md
+# Checklist
+- [x] players: 3
+- [x] hexgrid (hexes are cute)
+- [x] robots ~~with wide abilities,~~ which they late rspecialize
+- [x] optimism level influences the whole game (like luck)
+- [x] action cards: positive and negative
+- [x] dice roll to avoid negative action, chance dependent on optimism level
+- [x] ability to place a cat after round ends, chance dependent on optimism level
+- [x] no max cats per hex, but max numbre of cats = (number of hexes * 1.5).floor()
+- [x] 1 round = all players using their action points
+- [x] players get action points at the start of round, each rolls a d10
+- [x] number of cats amplify the action cards, effect written on action card
+- [x] corruption levels in each tile
+- [x] corruption: 1D6 per resource, higher skill level required to work with resource
+- [x] corruption does not spread, only acts as a gatekeeper for skill levels
+- [x] 1 corruption level = 1 skill level
+- [x] skill level trading between players
+- [x] trading can only be done when players are in the same hex
+- [x] 1 trade per AP
+- [x] 1 skill level per trade
+- [x] each player starts with 3 skill points; needs to distribute in {water, plant, animal}
+- [x] 25%, 50%, 75%, 100% optimism give 1 more point to each player to specialize
+
+- [x] action points, number depends on optimism level 1 + chance, eg: 0 to 1 move if 10% optimism, 0 to 2 moves if 20% optimism, 1 to 2 moves if 30% optimism, 1 to 3 moves if 40% optimism, 1 to 4 moves if 50% optimism, 2 to 4 moves if 75% optimism, 3 to 4 moves if 90% optimism, 4 moves if 95% optimism
+- [x] --- optimism is like the opposite of depression
+- [x] 1 action point: move to another hex, draw 1 action card, save one action card for later, transmute
+- [x] negative cards apply automatically
+- ~~[ ] negative cards apply corruption in current hex~~
+- ~~[ ] positive cards remove corruption~~
+
+- [x] obtain raw resources by using action points on tile, 3 AP to get 100%, each tile gives 3 resources, 1 for each AP, max 3 AP
+
+- [x] transmute raw resource into refined resources
+- [x] raw resource: garbage (always 3 per hex)
+- [x] refined resources: ~~rock matter,~~ plant matter, animal matter, ~~neutrients,~~ water
+
+- [x] 3 resources per hex
+
+- [x] 1 resource = contained,
+- [x] 2 resource = spill into 3 hex decided by player,
+- [x] 3 resource = spill into all neighbors
+
+- [x] water: allows plants and animals to live
+- [x] plant: plants
+- [x] animal: animals
+
+- [x] draw all the refined resources on the map, spillover is shown with the drawing
+
+- [x] win condition: transmute all garbage into refined resources, and you get a cool map :3
+- [x] lose condition: dont have fun (no lose condition)
+
+map:
+   HHH
+  HHHHH
+ HHHHHHH
+  HHHHH
+   HHH
+
+- [x] gameplay flow:
+
+- [x] start of game:
+- [x] each player selects skill points
+- [x] they all start on corner of hex, decided by them
+
+- [x] each round:
+- [x] each player rolls dice, gets AP
+- [x] strategise on how to spend their AP
+- [x] round ends, roll for cat
+```
+
 #show: master-layout.with(
   subtitle: "Creative Exercise",
   exercise-prompt: exercise-prompt,
+  pre: pre,
   abstract: [
     "Re:Build Nature" is a cooperative board game where players work together to restore a post-apocalyptic world. In this cozy and hopeful setting, players, through the power of friendship, transmute garbage into beautiful ecosystems. The game emphasizes ecosystem building and positive action, making sure optimism affects all the core gameplay mechanics. The goal is to have fun as a group and create a unique map as a reward for the players to look back upon.
   ],
 )
+
 = High Concept Document
 #explanation(detail: "A brief overview of the game")[
   == Key Details
@@ -59,8 +132,6 @@
   ],
 )
 
-
-
 === Theme
 Nature restoration and optimism
 
@@ -71,7 +142,7 @@ Nature restoration and optimism
 
 Optimism is an important part of the gameplay; it influences nearly every game mechanic, and it's not merely a goal the players need to complete to 100%. The decisions made in the game are reflected in the real world, as the players need to draw on the map to perform actions. This acts as physical evidence for the time they spent together, and hopefully, in dire times, they will look back at the map they created and get hope.
 
-=== Core Gameplay Idea
+=== Core Gameplay Idea <cgi>
 Three players come together to transform the garbage-filled map into scenic beauty by physically drawing on the map. They roll to gain action points, and the number of action points is determined by the current optimism level.
 
 #explanation(detail: "Short statement about the game")[
@@ -99,11 +170,11 @@ Players want to relax and play with their friends. Once the game finishes, they 
 ]
 People interested in relaxing with their friends.
 
+// -- PAGE END 1/7
+
 #explanation(detail: "Examples of similar products and comments on how it's different")[
   == Competition
 ]
-
-// -- PAGE END 1/7
 
 === Terra Nil
 #quote(
@@ -129,7 +200,7 @@ People interested in relaxing with their friends.
   - Relaxing gameplay with friends.
 ]
 #explanation(detail: "The important design aspects of your game that we want to instill")[
-  == Design Goals
+  == Design Goals <dg>
 ]
 - Create a cooperative experience with positive vibes
 - Relax with friends
@@ -140,7 +211,7 @@ People interested in relaxing with their friends.
 - No fail state
 
 #explanation(detail: "Design aspects that we're explicitly trying to avoid")[
-  == Design non-goals
+  == Design non-goals <dng>
 ]
 - Mechanics which introduce competition between players
 - Mentally intensive game that requires juggling resources
@@ -165,7 +236,7 @@ People interested in relaxing with their friends.
 *Recommendation*: The players can attach their player cards to the outside of the grid, and that would be their starting position.
 
 == Action Point Generation <RoundStart>
-At the start of the round, all players roll a ten-sided dice (1D6) which generates action points (APs) according @APCalc.
+At the start of the round, all players roll a ten-sided dice (1D6) which generates action points (APs) according to @APCalc.
 $
   "AP" &= 1 + floor("Bias" (#[@OptimismBias]) * "dice roll"/6)
 $ <APCalc>
@@ -467,8 +538,6 @@ There are four requirements to trade skill points.
 Cat tokens can only be placed in the current hex, and they can't be moved.
 There is no max cat per hex; however, the maximum number of cats per board is calculated using @MaxCat.
 
-Unless otherwise stated, the cat modifiers only apply if the action card is used in a hex with a cat token. The cat modifiers are applied for each cat token in the hex.
-
 $
   "Max number of cats per board" = floor("number of hexes in the map" * 1.5)
 $ <MaxCat>
@@ -493,6 +562,8 @@ $ <MaxCat>
   ),
   caption: "Look Up Table for calculating max number of cats",
 )
+
+Unless otherwise stated, the cat modifiers only apply if the action card is used in a hex with a cat token. The cat modifiers are applied for each cat token in the hex.
 
 #block[== Corruption]
 
@@ -731,7 +802,7 @@ The players can draw whatever they want as their player character inside a hexag
 The testing was done by meeting in real life and hosting a game.
 Two of my friends (Ashutosh, and Divyesh) joined me to play the game (see: @all-of-us-photo).
 A two hour session was held.
-The drawing part was done on pc, using the digital painting app #link("https://krita.org/en/")[Krita] and a pentablet (#link("https://www.xp-pen.com/product/deco-fun-xs-s-l.html")[XP-Pen Deco Fun L]).
+The drawing part was done on pc, using the digital painting app #[#link("https://krita.org/en/")[Krita] <links>] and a pentablet (#[#link("https://www.xp-pen.com/product/deco-fun-xs-s-l.html")[XP-Pen Deco Fun L] <links>]).
 The data layer was done on a paper (see: @final-hex-grid-photo).
 We used out keychains as player tokens to track position (see: @A-token-photo, @D-token-photo, and @H-token-photo).
 
@@ -763,9 +834,9 @@ These were the major problems we encountered and what I did to remedy them.
   #photo-gallery(
     columns: 3,
     imgs: (
-      (path: "IMG_20250308_200600058.jpg", caption: "Ashutosh's Token", label-text: "A-token-photo"),
-      (path: "IMG_20250308_200541249.jpg", caption: "Divyesh's Token", label-text: "D-token-photo"),
-      (path: "IMG_20250308_200545983.jpg", caption: "Herschel's (my) Token", label-text: "H-token-photo"),
+      (path: "IMG_20250308_200600058_thumbnail.jpg", caption: "Ashutosh's Token", label-text: "A-token-photo"),
+      (path: "IMG_20250308_200541249_thumbnail.jpg", caption: "Divyesh's Token", label-text: "D-token-photo"),
+      (path: "IMG_20250308_200545983_thumbnail.jpg", caption: "Herschel's (my) Token", label-text: "H-token-photo"),
     ),
   )
 ]
@@ -779,10 +850,10 @@ These were the major problems we encountered and what I did to remedy them.
   #photo-gallery(
     columns: 3,
     imgs: (
-      (path: "IMG_20250308_161747799.jpg", caption: "Meeting up to play", label-text: "all-of-us-photo"),
-      (path: "IMG_20250308_191637941.jpg", caption: "Discusing Moves", label-text: "discussion-photo"),
-      // (path: "IMG_20250308_191642770.jpg", caption: ""),
-      (path: "IMG_20250308_200427006.jpg", caption: "Final Positions", label-text: "final-hex-grid-photo"),
+      (path: "IMG_20250308_161747799_thumbnail.jpg", caption: "Meeting up to play", label-text: "all-of-us-photo"),
+      (path: "IMG_20250308_191637941_thumbnail.jpg", caption: "Discusing Moves", label-text: "discussion-photo"),
+      // (path: "IMG_20250308_191642770_thumbnail.jpg", caption: "", label-text: ""),
+      (path: "IMG_20250308_200427006_thumbnail.jpg", caption: "Final Positions", label-text: "final-hex-grid-photo"),
     ),
   )
 ]

@@ -2,14 +2,10 @@
 
 #context t.update(true)
 
-#import "creative.typ"
-#creative
+#include "creative.typ"
 
-#import "analytical.typ"
-#analytical
+#include "analytical.typ"
 
-#import "acknowledgement.typ"
-#acknowledgement
+#include "acknowledgement.typ"
 
-#import "outlines.typ"
-#outlines
+#include "outlines.typ"
