@@ -6,6 +6,6 @@
 
 #include "analytical.typ"
 
-#include "acknowledgement.typ"
+#include "acknowledgment.typ"
 
 #include "outlines.typ"

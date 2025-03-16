@@ -121,7 +121,7 @@
   exercise-prompt: exercise-prompt,
   pre: pre,
   abstract: [
-    This essay examines the board game "Re:Build Nature", which was loosely made using the MDA framework with strong influence from @fpod. The aim of this essay is to reflect on the board game's results and the process of making it as a person who isn't creative. It goes through some of the problems I faced and how I overcame them. This essay focuses on three problems in @cdp, and my thought process behind the decisions made for them.
+    This essay examines the board game "Re:Build Nature", which was loosely made using the MDA(Mechanics, Dynamics, and Aesthetics) framework with strong influence from @fpod. The aim of this essay is to reflect on the board game's results and the process of making it as a person who isn't creative. It goes through some problems I faced and how I overcame them. This essay focuses on three problems in @cdp, and my thought process behind the decisions made for them.
   ],
 )
 
@@ -129,7 +129,7 @@
   = Introduction
 ]
 
-I am not a creative person. I believe that designing is a muscle that can be trained by (not blindly)copying, analyzing, and then remixing the work of others. I believe that there's always a lesson to be learnt. So, how did I design my game?
+I am not a creative person. I believe that designing is a muscle that can be trained by (not blindly)copying, analyzing, and then remixing the work of others. I believe that there's always a lesson to be learned. So, how did I design my game?
 #explanation(
   detail: [heavily inspired by #[#link("https://en.wikipedia.org/wiki/Double_Diamond_(design_process_model)")[Double Diamond (design process model)]<links>]],
 )[
@@ -197,7 +197,7 @@ So, action points scale with optimism and cat tokens exist as scalers to action 
   = Goals and non-goals<gang>
 ]
 
-There were a lot of ideas, but what I could use were not only limited by the medium of the game, but also by the page limit for the assignment. So, I had work within those limitations. Also, a strong core is better than multiple underdeveloped ideas. It's also better to add a strong core, rather than removing and suffering backlash.
+There were many ideas, but what I could use weren't only limited by the medium of the game, but also by the page limit for the assignment. So, I had work within those limitations. Also, a strong core is better than multiple underdeveloped ideas. It's also better to add a strong core, rather than removing and suffering backlash.
 
 Describing your game's @cgi limit by using @dg and @dng.
 
@@ -229,7 +229,7 @@ Describing your game's @cgi limit by using @dg and @dng.
 - #[#link("https://en.wikipedia.org/wiki/Prisoner's_dilemma")[Prisoner's dilemma]<links>]
 
 = Final Words
-I hasn't played that many board games, let alone board games with complex rulesets which require more than 10 minutes to learn. So, making a board game was an interesting challenge. Another thing is that I'm accoustomed to hiding the complex looking formulae behind code, so showing them in an easy to use manner was not that easy, especially with the limited number of pages I could use.
+I hasn't played that many board games, let alone board games with complex rulesets which require more than 10 minutes to learn. So, making a board game was an interesting challenge. Another thing is that I'm accoustomed to hiding the complex looking formulae behind code, so showing them in an easy to use manner wasn't that easy, especially with the limited number of pages I could use.
 
 Also, I can only make games and programs if I'm personally interested in using them. To do that, I had imbue the game with my emotions. I wanted to make the players feel increasing amounts of hope and optimism, just as I felt. However, I didn't want them to feel the mental damage. It's not supposed to be that kind of game.
 
