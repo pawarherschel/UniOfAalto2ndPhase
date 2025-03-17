@@ -108,7 +108,7 @@
     [
       #set heading(numbering: "1.")
       #set heading(offset: 1)
-      = Dummy Headings for citing cross file
+      = Your princess is in another castle!
       == c g i<cgi>
       == d g<dg>
       == d n g<dng>
@@ -166,7 +166,7 @@ What all mechanics I can implement
   = Getting started<gs>
 ]
 
-I started by checking the defination in dictionary, but found nothing. Optimism is a feeling, so I started thinking about the moments I feel optimism, and the anti-thesis of optimism, depression. I say moments because people only remember the peaks, and peaks only last a moment. Then I asked my friends about what they thought the game could have.
+I started by checking the definition in dictionary, but found nothing. Optimism is a feeling, so I started thinking about the moments I feel optimism, and i feel like lack of optimism leads to depression. I say moments because people only remember the peaks, and peaks only last for a moment. Then I asked my friends about what they thought the game could have.
 
 #explanation(detail: "Condensing the possibilities")[
   = Core Design Philosophies<cdp>
@@ -175,7 +175,7 @@ I started by checking the defination in dictionary, but found nothing. Optimism 
 == "Given the opportunity, players will optimize the fun out of a game."
 I need to make sure that the optimal path is the fun path. I am guilty of this as well. However, this is supposed to be a cooperative board game. What does winning mean in this context? Does it even make sense to have a win state in the game? #[#link("https://www.minecraft.net/en-us")[Minecraft]<links>] doesn't have one.
 
-I used to play Minecraft with friends back in school. Killing the ender dragon triggers ending credits. However, to most people, that's not the point, it's more about having fun.
+I used to play Minecraft with friends back in school. Killing the ender dragon triggers ending credits. However, to most people, that's not the end, it's more about having fun.
 
 Playing a cooperative and creative game brings people together. Thus, I decided that the game shouldn't have an explicit win condition, and just like Minecraft, I decided that the "win condition" should be the memories.
 
@@ -197,7 +197,7 @@ So, action points scale with optimism and cat tokens exist as scalers to action 
   = Goals and non-goals<gang>
 ]
 
-There were many ideas, but what I could use weren't only limited by the medium of the game, but also by the page limit for the assignment. So, I had work within those limitations. Also, a strong core is better than multiple underdeveloped ideas. It's also better to add a strong core, rather than removing and suffering backlash.
+There were many ideas, but what I could use weren't only limited by the medium of the game, but also by the page limit for the assignment. So, I had work within those limitations. Also, a strong core is better than multiple underdeveloped ideas. It's also better to add to a strong core, rather than removing mechanics and suffering backlash.
 
 Describing your game's @cgi limit by using @dg and @dng.
 
@@ -229,11 +229,11 @@ Describing your game's @cgi limit by using @dg and @dng.
 - #[#link("https://en.wikipedia.org/wiki/Prisoner's_dilemma")[Prisoner's dilemma]<links>]
 
 = Final Words
-I hasn't played that many board games, let alone board games with complex rulesets which require more than 10 minutes to learn. So, making a board game was an interesting challenge. Another thing is that I'm accoustomed to hiding the complex looking formulae behind code, so showing them in an easy to use manner wasn't that easy, especially with the limited number of pages I could use.
+I haven't played that many board games, let alone board games with complex rulesets which require more than 10 minutes to learn. So, making a board game was an interesting challenge. Another thing is that I'm accustomed to hiding the complex looking formulae behind code, so showing them in an easy to use manner wasn't that easy, especially with the limited number of pages I could use.
 
-Also, I can only make games and programs if I'm personally interested in using them. To do that, I had imbue the game with my emotions. I wanted to make the players feel increasing amounts of hope and optimism, just as I felt. However, I didn't want them to feel the mental damage. It's not supposed to be that kind of game.
+While it may seem like I've been complaining about the limitations, I know that limitations breed innovation. They made me perform quite a few hacks to fit all the content within 7 pages.
 
-While it may seem like I've been complaining about the limitations, I know that limitations breed innovation. It made me perform quite a few hacks to fit all the content within 7 pages.
+Also, I can only make games and programs if I'm personally interested in using them. One of the ways is to imbue the game with my emotions. I wanted to make the players feel increasing amounts of hope and optimism, just as I felt. However, I didn't want them to feel the mental damage. It's not supposed to be that kind of game.
 
 = Conclusion
 Looking back I feel like the game's success was 6.5/10. It had quite a few problems, but with time, and more playtests, it can become a decent game. It was fun to play the game with my friends. The action cards are a bit boring. I feel like the (admittedly) stupid drawings would've been funny, especially the cat tokens.
